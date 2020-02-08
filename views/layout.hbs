@@ -4,9 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Worldmap</title>
 </head>
 <body>
+    <header>
+        <div>
+            <h1>Worldmap</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/"></a></li>
+                <li><a href="/about"></a></li>
+                {{#unless isLoggedIn}}
+                <li><a href="/auth/signin"></a></li>
+                <li><a href="/auth/signup"></a></li>
+                {{/unless}}
+                {{#if isLoggedIn}}
+                <li><a href="/user"></a></li>
+                <li><a href="/auth/signout"></a></li>
+                {{/if}}
+            </ul>
+        </nav>
+    </header>
     {{{body}}}
+    <footer>
+        2020, Ironhack
+    </footer>
 </body>
 </html>

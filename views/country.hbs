@@ -1,1 +1,21 @@
-<h1>country</h1>
+<section class="page country-page">
+    {{#each countries}}
+    <div class="country-header">
+        <div class="country-header-image">
+            <img src="" alt="">
+        </div>
+        <div class="country-header-content">
+            <div class="country-header-title">
+                <img src="" alt="{{country.name}} flag">
+                <h2>{{country.name}}</h2>
+            </div>
+            <div class="country-header-status">
+                
+            </div>
+        </div>
+    </div>
+    <div class="country-info">
+
+    </div>
+    {{/each}}
+</section>
