@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const tipSchema = new Schema({
     body: String,
+    name: String,
     user: {
         type: Schema.Types.ObjectId,
         ref: "User",
@@ -14,9 +15,11 @@ const tipSchema = new Schema({
         required: true
     },
     city: String,
+    address: String,
     category: {
         type: String,
-        enum: ["Restaurant", "Bar", "Museum", "Shopping", "Garden"],
+        enum: ["Restaurant", "Bar", "Museum", "Shopping", "Garden", "Important"],
+        required: true
     }
 });
 

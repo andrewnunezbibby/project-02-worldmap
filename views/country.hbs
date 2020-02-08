@@ -1,21 +1,47 @@
 <section class="page country-page">
-    {{#each countries}}
-    <div class="country-header">
-        <div class="country-header-image">
-            <img src="" alt="">
-        </div>
-        <div class="country-header-content">
-            <div class="country-header-title">
-                <img src="" alt="{{country.name}} flag">
-                <h2>{{country.name}}</h2>
+    <div class="country-box">
+        <div class="country-header">
+            <div class="country-header-img">
+                <img src="{{country.image}}" alt="{{country.name}} image">
             </div>
-            <div class="country-header-status">
-                
+            <div class="country-header-content">
+                <div class="country-header-title">
+                    <img src="{{country.flag}}" alt="{{country.name}} flag">
+                    <h2>{{country.name}}</h2>
+                </div>
+                <div class="country-header-status">
+                    <button type="button" id="country-status-visited" class="country-status-visited"><i class="fas fa-star"></i> Visited</button>
+                    <button type="button" id="country-status-wishlist" class="country-status-wishlist"><i class="fas fa-heart"></i> Wishlist</button>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="country-info">
+        <div class="country-main">
+            <div class="country-main-info">
+                <p>Main City : {{country.mainCity}}</p>
+                <p>Languages : {{country.languages}}</p>
+                <p>Currency : {{country.currency}}</p>
+                <p>{{country.info}}</p>
+            </div>
+            <div class="country-main-gallery">
 
+            </div>
+        </div>
     </div>
-    {{/each}}
+    <div class="tips-box">
+        <div class="tips-nav">
+            <button class="tips-category active" type="button"><i class="fas fa-wine-glass-alt"></i> Bars</button>
+            <button class="tips-category" type="button"><i class="fas fa-utensils"></i> Restaurants</button>
+            <button class="tips-category" type="button"><i class="fas fa-leaf"></i> Parks</button>
+            <button class="tips-category" type="button"><i class="fas fa-eye"></i> Monuments</button>
+            <button class="tips-category" type="button"><i class="fas fa-shopping-bag"></i> Shopping</button>
+            <button class="tips-category" type="button"><i class="fas fa-info"></i> Info</button>
+        </div>
+        <div class="tips-list">
+            {{#each tips}}
+            <article class="tip-container">
+                
+            </article>
+            {{/each}}
+        </div>
+    </div>
 </section>
