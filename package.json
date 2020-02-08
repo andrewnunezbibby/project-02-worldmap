@@ -1,0 +1,35 @@
+{
+  "name": "project-02-worldmap",
+  "version": "1.0.0",
+  "description": "THE BEST PROJECT EVAAA",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./server.js -e .js,.hbs",
+    "start": "nodemon ./bin/www -e .hbs,.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gorlanova/project-02-worldmap.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gorlanova/project-02-worldmap/issues"
+  },
+  "homepage": "https://github.com/Gorlanova/project-02-worldmap#readme",
+  "dependencies": {
+    "async": "^3.1.1",
+    "bcrypt": "^3.0.8",
+    "cloudinary": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "hbs": "^4.1.0",
+    "mongo-connect": "0.0.6",
+    "mongoose": "^5.8.11",
+    "multer": "^1.4.2",
+    "node": "^13.7.0"
+  }
+}
