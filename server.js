@@ -1,6 +1,6 @@
 require("dotenv").config();
 require("./config/mongodb"); 
-require("./helpers/helpers-hbs"); 
+// require("./helpers/helpers-hbs"); 
 
 // base dependencies
 const express = require("express");
@@ -13,17 +13,30 @@ const cookieParser = require("cookie-parser");
 
 
 // initial config
-app.set("view engine", "hbs");
-app.set("views", __dirname + "/views");
-app.use(express.static("public"));
+server.set("view engine", "hbs");
+server.set("views", __dirname + "/views");
+server.use(express.static("public"));
 hbs.registerPartials(__dirname + "/views/partials");
-app.use(express.urlencoded({extended: true}));
-app.use(express.json());
-app.use(cookieParser());
+server.use(express.urlencoded({extended: true}));
+server.use(express.json());
+server.use(cookieParser());
 
 
 // SESSION SETUP
-
+server.use(
+    session({
+      secret: process.env.SESSION_SECRET,
+      cookie: { maxAge: 60000 }, // in millisec
+      store: new MongoStore({
+        mongooseConnection: mongoose.connection,
+        ttl: 24 * 60 * 60 // 1 day
+      }),
+      saveUninitialized: true,
+      resave: true
+    })
+  );
+  
+  server.locals.site_url = process.env.SITE_URL;
 
 
 
