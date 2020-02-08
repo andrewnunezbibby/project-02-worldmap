@@ -16,10 +16,15 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    wishlist: [String],
-    visited: [String],
-    avatar: String,
-    tipsGiven: [objects]
+    wishlist: {
+        type: Schema.Types.ObjectId,
+        ref: "Country",
+    },
+    visited: {
+        type: Schema.Types.ObjectId,
+        ref: "Country",
+    },
+    avatar: String
 });
 
 const userModel = mongoose.model("User", userSchema);
