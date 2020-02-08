@@ -1,1 +1,19 @@
-<h1>Signup</h1>
+<section class="page signup-page">
+    <h2>Sign Up</h2>
+    <form class="form signup-form" action="post" action="/auth/signup">
+        <div class="form-item flex">
+            <label for="username" class="form-label">Username</label>
+            <input name="username" class="form-input" id="signup-form-username" type="text" placeholder="Username" value="Admin" required>
+        </div>
+        <div class="form-item flex">
+            <label for="email" class="form-label">E-mail</label>
+            <input name="email" class="form-input" id="signup-form-email" type="email" placeholder="email@domain.com" value="email@domain.com" required>
+        </div>
+        <div class="form-item flex">
+            <label for="password" class="form-label">Password</label>
+            <input name="password" class="form-input" id="signup-form-password" type="password" placeholder="••••••••" value="1234toto" required>
+        </div>
+        <button type="submit" class="form-button" id="signup-form-button">Register</button>
+    </form>
+    <p>Already have an account ? <a href="/auth/signin" class="form-link">Sign In</a></p>
+</section>
