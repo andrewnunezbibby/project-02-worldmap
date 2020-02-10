@@ -68,4 +68,11 @@ function eraseSessionMessage() {
 server.use(checkloginStatus);
 server.use(eraseSessionMessage());
 
+// ROUTES
+const index = require("./routes/index");
+server.use("/", index);
+
+const auth = require("./routes/auth");
+server.use("/auth", auth);
+
 module.exports = server;
