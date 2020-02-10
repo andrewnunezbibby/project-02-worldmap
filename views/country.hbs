@@ -1,4 +1,4 @@
-<section class="page country-page">
+<section class="page country-page flex">
     <div class="country-box">
         <div class="country-header">
             <div class="country-header-img">
@@ -22,14 +22,11 @@
                 <p>Currency : {{country.currency}}</p>
                 <p>{{country.info}}</p>
             </div>
-            <div class="country-main-gallery">
-
-            </div>
         </div>
     </div>
     <div class="tips-box">
         {{#unless isLoggedIn}}
-        Please 
+        Please <a href="/auth/signup">log in</a> to view the tips !
         {{/unless}}
         {{#if isLoggedIn}}
         <div class="tips-nav">

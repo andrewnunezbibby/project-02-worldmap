@@ -9,6 +9,10 @@ router.get(["/", "/home"], (req, res) => {
     res.render("home");
 });
 
+router.get("/guide", (req, res) => {
+    res.render("guide");
+});
+
 router.get("/about", (req, res) => {
     res.render("about");
 });

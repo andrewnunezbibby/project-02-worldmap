@@ -1,6 +1,7 @@
 @import "./header.css";
 @import "./footer.css";
 @import "./home.css";
+@import "./guide.css";
 @import "./about.css";
 @import "./country.css";
 @import "./user.css";
@@ -9,6 +10,8 @@
 
 * {
     border: 1px solid #ff00ff;
+    box-sizing: border-box;
+    vertical-align: baseline;
 }
 
 html, body{
@@ -16,8 +19,12 @@ html, body{
     padding: 0;
     font-size: 100%;
     font-family: Helvetica, sans-serif;
-    box-sizing: border-box;
-    vertical-align: baseline;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
 }
 
 ul{
@@ -32,4 +39,22 @@ a{
 
 .flex{
     display: flex;
+}
+
+.page{
+    padding: 1.5rem;
+    width: 70%;
+    min-width: 375px;
+    flex-direction: column;
+    margin: auto 0;
+}
+
+h2{
+    margin: 0 0 1.5rem;
+    font-family: 'Cabin Sketch', cursive;
+}
+
+h3{
+    margin: 0;
+    font-family: 'Cabin Sketch', cursive;
 }

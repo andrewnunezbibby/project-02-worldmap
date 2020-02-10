@@ -13,5 +13,26 @@ header{
 }
 
 .header-nav li{
-    margin-left: 0.5rem;
+    margin-left: 1rem;
+    line-height: 1em;
+}
+
+.nav-list{
+    margin: 0;
+}
+
+@media screen and (max-width: 790px) {
+    .header-nav{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .header-nav li{
+        line-height: 0.3em;
+    }
+
+    .nav-list a{
+        font-size: 0.3em;
+    }
 }

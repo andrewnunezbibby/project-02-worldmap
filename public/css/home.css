@@ -1,0 +1,10 @@
+.home-popup{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    background-color: rgba(255,192,203,0.3);
+    height: 50%;
+    width: 50%;
+}
