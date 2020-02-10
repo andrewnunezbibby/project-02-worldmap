@@ -5,7 +5,7 @@ const countryModel = require("../models/Country")
 const tipModel = require("../models/Tip")
 
 
-router.get("/", (req, res) => {
+router.get(["/", "/home"], (req, res) => {
     res.render("home");
 });
 
