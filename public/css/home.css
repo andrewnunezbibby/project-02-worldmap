@@ -4,7 +4,52 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 50%;
-    background-color: rgba(255,192,203,0.3);
-    height: 50%;
-    width: 50%;
+    background-color: rgba(255,255,255, 0.5);
+    width: 40%;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 12px;
+    border: 4px dotted black;
+}
+
+.popup-top{
+    justify-content: space-between;
+}
+
+.popup-title{
+    margin-bottom: 0;
+}
+
+.button-hidden{
+    visibility: hidden;
+}
+
+.popup-top button{
+    padding: 0 15px;
+    text-decoration: none;
+    background: none;
+    font-size: 1em;
+    font-weight: bold;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.popup-info{
+    width: auto;
+    line-height: 200%;
+    text-align: center;
+}
+
+.popup-buttons{
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-button{
+    margin: 0 10px;
+    padding: 5px;
+    font-size: 1em;
+    border: 1px solid black;
+    background: none;
+    border-radius: 5px;
 }

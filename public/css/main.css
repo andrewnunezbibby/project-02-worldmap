@@ -7,12 +7,14 @@
 @import "./user.css";
 @import "./tips.css";
 @import "./form.css";
+@import "./signin.css";
+@import "./signup.css";
 
-* {
+/* * {
     border: 1px solid #ff00ff;
     box-sizing: border-box;
     vertical-align: baseline;
-}
+} */
 
 html, body{
     margin: 0;
@@ -25,6 +27,10 @@ html, body{
     align-items: center;
     width: 100%;
     height: 100%;
+}
+
+body{
+    background: linear-gradient(to right, pink 0%, lightsalmon 50%, gold 100%);
 }
 
 ul{
@@ -47,14 +53,17 @@ a{
     min-width: 375px;
     flex-direction: column;
     margin: auto 0;
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 h2{
     margin: 0 0 1.5rem;
     font-family: 'Cabin Sketch', cursive;
+    font-size: 2em;
 }
 
 h3{
+    font-size: 1.5em;
     margin: 0;
     font-family: 'Cabin Sketch', cursive;
 }

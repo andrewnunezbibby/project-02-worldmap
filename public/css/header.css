@@ -1,5 +1,7 @@
 header{
     width: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    border-bottom: 4px dotted black;
 }
 
 .header-nav{
@@ -9,7 +11,10 @@ header{
     justify-content: space-between;
     align-items: center;
     font-family: 'Cabin Sketch', cursive;
-    font-size: 2em;
+    font-size: 2.5em;
+    background: linear-gradient(to right, pink 0%, lightsalmon 50%, gold 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
 }
 
 .header-nav li{
@@ -21,7 +26,7 @@ header{
     margin: 0;
 }
 
-@media screen and (max-width: 790px) {
+@media screen and (max-width: 960px) {
     .header-nav{
         flex-direction: column;
         justify-content: center;

@@ -1,0 +1,42 @@
+.signup-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 3rem 0;
+}
+
+.signup-form div{
+    margin-bottom: 1.5rem;
+    width: 300px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.signup-form input{
+    width: 150px;
+    padding: 5px 10px;
+    background: none;
+    font-size: 1em;
+}
+
+.signup-form button{
+    width: 300px;
+    background: none;
+    border: 1px solid black;
+    font-size: 1em;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.signup-page p{
+    margin: 0;
+    margin-top: 1.5rem;
+}
+
+.signup-page a{
+    color: black;
+    border: 3px solid lightsalmon;
+    padding: 5px;
+    border-radius: 5px;
+}

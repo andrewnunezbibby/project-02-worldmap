@@ -1,0 +1,31 @@
+.signin-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+.signin-form div{
+    margin-bottom: 1.5rem;
+    width: 300px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.signin-form input{
+    width: 150px;
+    padding: 5px 10px;
+    background: none;
+}
+
+.signin-page p{
+    margin: 0;
+}
+
+.signin-page a{
+    color: black;
+    border: 3px solid lightsalmon;
+    padding: 5px;
+    border-radius: 5px;
+}

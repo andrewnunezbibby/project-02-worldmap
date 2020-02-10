@@ -1,7 +1,16 @@
 {{#unless isLoggedIn}}
-<div class="home-popup">
-    <div class="popup-close">
-        
+<div class="home-popup flex">
+    <div class="popup-top flex">
+        <button class="button-hidden">X</button>
+        <h2 class="popup-title">Hi stranger !</h2>
+        <button>x</button>
+    </div>
+    <p class="popup-info flex">
+        Here you can keep track of the countries you've visited, or that you would like to visit in the future. You can also find the best addresses for each destination. To get full access, create your account !  
+    </p>
+    <div class="popup-buttons flex">
+        <button class="popup-button"><a href="/auth/signin">Sign in</a></button>
+        <button class="popup-button"><a href="/auth/signup">Sign up</a></button>
     </div>
 </div>
 {{/unless}}
