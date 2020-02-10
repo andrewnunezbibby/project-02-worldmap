@@ -1,16 +1,18 @@
 <header class="flex">
-    <nav>
+    <nav class="header-nav flex">
         <a class="header-title" href="/">Worldmap</a class="header-title">
-        <ul class="header-nav flex">
-            <li><a href="/"></a></li>
-            <li><a href="/about"></a></li>
+        <ul class="flex">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+        </ul>
+        <ul class="flex">
             {{#unless isLoggedIn}}
-            <li><a href="/auth/signin"></a></li>
-            <li><a href="/auth/signup"></a></li>
+            <li><a href="/auth/signin">Log in</a></li>
+            <li><a href="/auth/signup"></a>Sign up</li>
             {{/unless}}
             {{#if isLoggedIn}}
-            <li><a href="/user"></a></li>
-            <li><a href="/auth/signout"></a></li>
+            <li><a href="/user">Profile</a></li>
+            <li><a href="/auth/signout">Log out</a></li>
             {{/if}}
         </ul>
     </nav>

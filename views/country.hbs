@@ -28,6 +28,10 @@
         </div>
     </div>
     <div class="tips-box">
+        {{#unless isLoggedIn}}
+        Please 
+        {{/unless}}
+        {{#if isLoggedIn}}
         <div class="tips-nav">
             <div class="tips-nav-list">
                 <button class="tips-category active" type="button"><i class="fas fa-wine-glass-alt"></i> Bars</button>
@@ -58,6 +62,7 @@
             </article>
             {{/each}}
         </div>
+        {{/if}}
     </div>
     <form class="form tip-form hidden" action="/tips/add" method="post">
         <div class="form-item flex">
