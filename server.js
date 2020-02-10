@@ -10,6 +10,8 @@ const session = require("express-session");
 const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo")(session);
 const cookieParser = require("cookie-parser");
+const flash = require("connect-flash"); 
+
 
 
 // initial config
@@ -51,6 +53,18 @@ function checkloginStatus(req, res, next) {
   // access this value @ {{isLoggedIn}} in .hbs
   next() // continue to the requested route
 }
+
+// FLASH MESSAGES
+// enable "flash messaging" system
+// it depends on the express-session mechanism
+server.use(flash());
+
+// CUSTOM MIDDLEWARES
+// expose flash message to the hbs templates, if any flash-message is defined
+server.use(require("./middlewares/exposeFlashMessage"));
+
+// expose login status to the hbs templates
+server.use(require("./middlewares/exposeLoginStatus"));
 
 
 

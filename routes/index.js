@@ -13,9 +13,8 @@ router.get("/about", (req, res) => {
     res.render("about");
 });
 
-router.get("/user/:id", (req, res) => {
-    userModel
-    .findById(req.params.id)
+router.get("/user", (req, res) => {
+    userModel.findById(req.params.id)
     .then(user => res.render("user", {user}))
     .catch(dbError => {res.send(dbError)})
 });

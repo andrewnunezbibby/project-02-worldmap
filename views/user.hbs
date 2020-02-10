@@ -2,26 +2,26 @@
     <div class="user-box">
         <div class="user-header">
             <div class="user-header-avatar">
-                <img src="{{user.avatar}}" alt="{{user.username}} avatar">
+                <img src="{{currentUser.avatar}}" alt="{{currentUser.username}} avatar">
             </div>
             <div class="user-header-username">
-                <h2>{{user.username}}</h2>
+                <h2>{{currentUser.username}}</h2>
             </div>
         </div>
         <div class="user-main">
             <div class="user-main-visited">
                 <h3>Visited :</h3>
                 <ul>
-                    {{#each user.visited}}
-                    <li><a href="/country/{{this._id}}">{{this.name}}</a></li>
+                    {{#each currentUser.visited}}
+                    <li><a href="/country/{{currentUser._id}}">{{currentUser.name}}</a></li>
                     {{/each}}
                 </ul>
             </div>
             <div class="user-main-wishlist">
                 <h3>Wishlist :</h3>
                 <ul>
-                    {{#each user.wishlist}}
-                    <li><a href="/country/{{this._id}}">{{this.name}}</a></li>
+                    {{#each currentUser.wishlist}}
+                    <li><a href="/country/{{currentUser._id}}">{{currentUser.name}}</a></li>
                     {{/each}}
                 </ul>
             </div>
@@ -39,7 +39,7 @@
             </div>
         </div>
         <div class="tips-list">
-            {{#each user.tips}}
+            {{#each currentUser.tips}}
             <article class="tip-container">
                 <div class="tip-category">
                     {{this.category}}
