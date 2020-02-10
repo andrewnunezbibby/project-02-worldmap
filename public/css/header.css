@@ -1,0 +1,18 @@
+header{
+    width: 100%;
+    padding: 0.5rem 1.5rem;
+}
+
+.header-nav{
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-nav>a{
+    font-family: 'Cabin Sketch', cursive;
+}
+
+.header-nav li{
+    margin-left: 0.5rem;
+}

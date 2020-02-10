@@ -1,3 +1,35 @@
+@import "./header.css";
+@import "./footer.css";
+@import "./home.css";
+@import "./about.css";
+@import "./country.css";
+@import "./user.css";
+@import "./tips.css";
+@import "./form.css";
+
 * {
+    border: 1px solid #ff00ff;
+}
+
+html, body{
+    margin: 0;
     padding: 0;
+    font-size: 100%;
+    font-family: Helvetica, sans-serif;
+    box-sizing: border-box;
+    vertical-align: baseline;
+}
+
+ul{
+    list-style: none;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.flex{
+    display: flex;
 }

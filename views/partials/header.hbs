@@ -1,0 +1,17 @@
+<header class="flex">
+    <nav>
+        <a class="header-title" href="/">Worldmap</a class="header-title">
+        <ul class="header-nav flex">
+            <li><a href="/"></a></li>
+            <li><a href="/about"></a></li>
+            {{#unless isLoggedIn}}
+            <li><a href="/auth/signin"></a></li>
+            <li><a href="/auth/signup"></a></li>
+            {{/unless}}
+            {{#if isLoggedIn}}
+            <li><a href="/user"></a></li>
+            <li><a href="/auth/signout"></a></li>
+            {{/if}}
+        </ul>
+    </nav>
+</header>
