@@ -1,4 +1,12 @@
+.about-container{
+    margin-top: 3rem;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
 .about-article{
     flex-direction: column;
     margin-bottom: 1.5rem;
+    justify-content: center;
+    align-items: center;
 }

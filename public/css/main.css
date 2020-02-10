@@ -48,7 +48,8 @@ a{
 }
 
 .page{
-    padding: 1.5rem;
+    box-sizing: border-box;
+    padding: 1.5rem 3rem;
     width: 70%;
     min-width: 375px;
     flex-direction: column;
