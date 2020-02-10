@@ -1,0 +1,7 @@
+.tips-nav button{
+    color: aqua;
+}
+
+button.is-active {
+    background: red;
+}

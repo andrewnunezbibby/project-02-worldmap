@@ -24,10 +24,11 @@ router.get("/user", (req, res) => {
 });
 
 router.get("/country/:id", (req, res) => {
-    countryModel
-    .findById(req.params.id)
-    .then(country => res.render("country", {country}))
-    .catch(dbError => {res.send(dbError)})
+    res.render("country")
+    // countryModel
+    // .findById(req.params.id)
+    // .then(country => res.render("country", {country}))
+    // .catch(dbError => {res.send(dbError)})
 });
 
 
