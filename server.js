@@ -13,43 +13,46 @@ const cookieParser = require("cookie-parser");
 
 
 // initial config
+server.use(express.urlencoded({
+  extended: true
+}));
 server.set("view engine", "hbs");
 server.set("views", __dirname + "/views");
 server.use(express.static("public"));
 hbs.registerPartials(__dirname + "/views/partials");
-server.use(express.urlencoded({extended: true}));
+
 server.use(express.json());
 server.use(cookieParser());
 
 
 // SESSION SETUP
 server.use(
-    session({
-      secret: process.env.SESSION_SECRET,
-      cookie: { maxAge: 60000 }, // in millisec
-      store: new MongoStore({
-        mongooseConnection: mongoose.connection,
-        ttl: 24 * 60 * 60 // 1 day
-      }),
-      saveUninitialized: true,
-      resave: true
-    })
-  );
-  
-  server.locals.site_url = process.env.SITE_URL;
+  session({
+    secret: process.env.SESSION_SECRET,
+    cookie: {
+      maxAge: 60000
+    }, // in millisec
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60 // 1 day
+    }),
+    saveUninitialized: true,
+    resave: true
+  })
+);
 
-// CUSTOM MIDDLEWARE
-// check if user is logged in... 
-// usecases : conditional display in hbs templates
-// WARNING: this function must be declared AFTER the session setup
-// WARNING: this function must be declared BEFORE app.use(router(s))
+server.locals.site_url = process.env.SITE_URL;
+
+/// CHECK LOGIN STATUS
 function checkloginStatus(req, res, next) {
-  res.locals.user = req.session.currentUser ? req.session.currentUser : null; 
+  res.locals.user = req.session.currentUser ? req.session.currentUser : null;
   // access this value @ {{user}} or {{user.prop}} in .hbs
-  res.locals.isLoggedIn = Boolean(req.session.currentUser);
+  res.locals.isLoggedIn = Boolean(req.session.currentUser)
   // access this value @ {{isLoggedIn}} in .hbs
-  next(); // continue to the requested route
+  next() // continue to the requested route
 }
+
+
 
 function eraseSessionMessage() {
   var count = 0; // initialize counter in parent scope and use it in inner function

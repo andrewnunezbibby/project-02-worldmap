@@ -1,6 +1,6 @@
 <section class="page signup-page">
     <h2>Sign Up</h2>
-    <form class="form signup-form" action="post" action="/auth/signup">
+    <form class="form signup-form" method="post" action="/auth/signup">
         <div class="form-item flex">
             <label for="username" class="form-label">Username</label>
             <input name="username" class="form-input" id="signup-form-username" type="text" placeholder="Username" value="Admin" required>
@@ -13,7 +13,7 @@
             <label for="password" class="form-label">Password</label>
             <input name="password" class="form-input" id="signup-form-password" type="password" placeholder="••••••••" value="1234toto" required>
         </div>
-        <button type="submit" class="form-button" id="signup-form-button">Register</button>
+        <button class="form-button" id="signup-form-button">Register</button>
     </form>
     <p>Already have an account ? <a href="/auth/signin" class="form-link">Sign In</a></p>
 </section>
