@@ -58,3 +58,13 @@
     width: 80%;
     height: 70%;
 }
+
+@media screen and (max-width: 638px){
+    .home-popup h2{
+        font-size: 1em;
+    }
+    .popup-top button{
+        border: none;
+        padding: 0;
+    }
+}

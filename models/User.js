@@ -23,8 +23,7 @@ const userSchema = new Schema({
     visited: {
         type: Schema.Types.ObjectId,
         ref: "Country",
-    },
-    avatar: String
+    }
 });
 
 const userModel = mongoose.model("User", userSchema);
