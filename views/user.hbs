@@ -1,13 +1,11 @@
 <section class="page user-page flex">
     <div class="user-box">
         <div class="user-header flex">
-            <div class="user-header-username">
-                <h2>{{currentUser.username}}</h2>
-            </div>
+            <h2>{{currentUser.username}}</h2>
         </div>
         <div class="user-main flex">
             <div class="user-main-visited">
-                <h3>Visited :</h3>
+                <h3>Visited</h3>
                 <ul>
                     {{#each currentUser.visited}}
                     <li><a href="/country/{{currentUser._id}}">{{currentUser.name}}</a></li>
@@ -15,7 +13,7 @@
                 </ul>
             </div>
             <div class="user-main-wishlist">
-                <h3>Wishlist :</h3>
+                <h3>Wishlist</h3>
                 <ul>
                     {{#each currentUser.wishlist}}
                     <li><a href="/country/{{currentUser._id}}">{{currentUser.name}}</a></li>

@@ -2,3 +2,28 @@
     justify-content: center;
     align-items: center;
 }
+
+.user-box{
+    width: 70%;
+}
+
+.user-header{
+    justify-content: center;
+}
+
+.user-main{
+    justify-content: space-evenly;
+}
+
+.user-main div{
+    margin-bottom: 2rem;
+}
+
+
+@media screen and (max-width: 650px){
+    .user-main{
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+}
