@@ -19,16 +19,19 @@ router.get("/about", (req, res) => {
 
 router.get("/user", (req, res) => {
     userModel.findById(req.params.id)
-    .then(user => res.render("user", {user}))
-    .catch(dbError => {res.send(dbError)})
+        .then(user => res.render("user", { user }))
+        .catch(dbError => { res.send(dbError) })
 });
 
-router.get("/country/:id", (req, res) => {
-    res.render("country")
-    // countryModel
-    // .findById(req.params.id)
-    // .then(country => res.render("country", {country}))
-    // .catch(dbError => {res.send(dbError)})
+router.get("/country/:codename", (req, res) => {
+    countryModel
+        .findOne({ codeName: req.params.codename })
+        .then(country => {
+            console.log(country)
+            res.render("country", { country })
+        })
+        .catch(dbError => { res.send(dbError) })
+    console.log(req.params.codename);
 });
 
 
