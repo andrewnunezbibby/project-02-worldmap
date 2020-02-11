@@ -9,11 +9,11 @@
 @import "./signin.css";
 @import "./signup.css";
 
-* {
+/* * {
     border: 1px solid #ff00ff;
     box-sizing: border-box;
     vertical-align: baseline;
-}
+} */
 
 html, body{
     margin: 0;
