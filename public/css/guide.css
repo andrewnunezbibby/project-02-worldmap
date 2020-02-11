@@ -1,31 +1,14 @@
 .guide-article{
     flex-direction: row;
     margin-bottom: 3rem;
+    display: none;
+    justify-content: space-between;
 }
 
 .guide-img{
-    width: 40%;
-    height: auto;
+    width: 30%;
 }
 
 .guide-text{
     width: 60%;
-}
-
-@media screen and (max-width: 700px){
-    .guide-article{
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 3rem;
-    }
-
-    .guide-img{
-        width: 80%;
-    }
-
-    .guide-text{
-        width: 80%;
-        text-align: center;
-    }
 }
