@@ -1,7 +1,17 @@
-const container = document.querySelector(".tips-box");
+const container = document.querySelector(".tips-nav-list");
 const visitedButton = document.querySelector("#country-status-visited");
 const wishlistButton = document.querySelector("#country-status-wishlist");
 const searchBar = document.querySelector("#search-bar");
+// Filter on tips 
+
+const btnAddTips = document.querySelector(".tips-nav-add button")
+// function display
+
+
+btnAddTips.onclick = function (e) {
+    const form = document.querySelector(".form.tip-form")
+    form.classList.toggle("hidden")
+}
 
 // Filter on tips 
 
