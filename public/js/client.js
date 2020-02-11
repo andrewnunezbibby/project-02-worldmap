@@ -1,5 +1,20 @@
 const container = document.querySelector(".tips-box");
+const visitedButton = document.querySelector("#country-status-visited");
+const wishlistButton = document.querySelector("#country-status-wishlist");
+
 // Filter on tips 
+
+function handleVisited(evt) {
+    const countryId = evt.target.getAttribute('data-country-id')
+    axios.patch(`/country/${countryId}/visited`).then()
+    console.log("======>" + countryId)
+}
+
+function handleWished(evt) {
+    const countryId = evt.target.getAttribute('data-country-id')
+    axios.patch(`/country/${countryId}/wishlist`).then()
+    console.log("======>" + countryId)
+}
 
 function handleClickedTips(evt) {
 
@@ -20,5 +35,7 @@ function handleClickedTips(evt) {
 
 
 container.onclick = handleClickedTips
+visitedButton.onclick = (evt) => handleVisited(evt);
+wishlistButton.onclick = (evt) => handleVisited(evt);
 
 

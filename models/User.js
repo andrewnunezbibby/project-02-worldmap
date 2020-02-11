@@ -16,14 +16,16 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    wishlist: {
+    wishlist: [{
         type: Schema.Types.ObjectId,
-        ref: "Country",
-    },
-    visited: {
-        type: Schema.Types.ObjectId,
-        ref: "Country",
-    }
+        ref: "Country"
+    }],
+    visited: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Country"
+        }
+    ]
 });
 
 const userModel = mongoose.model("User", userSchema);

@@ -54,6 +54,40 @@ router.get("/country/:id/:tips", (req, res) => {
         .catch(dbError => { res.send(dbError) })
 });
 
+router.patch("/country/:codename/visited", (req, res, next) => {
+    const user = req.session.currentUser
+    console.log('the useeeer', user);
+    const fakeUserId = "5e42b35e5429710afdceba3a"
+    countryModel
+        .findOne({ codeName: req.params.codename })
+        .then(country => {
+            userModel.findByIdAndUpdate(fakeUserId, { $push: { visited: country._id } }, { new: true })
+                .then(updatedUser => {
+                    console.log(updatedUser)
+                })
+                .catch(next)
+        })
+        .catch()
+
+})
+
+router.patch("/country/:codename/wishlist", (req, res, next) => {
+    const user = req.session.currentUser
+    console.log('the useeeer', user);
+    const fakeUserId = "5e42b35e5429710afdceba3a"
+    countryModel
+        .findOne({ codeName: req.params.codename })
+        .then(country => {
+            userModel.findByIdAndUpdate(fakeUserId, { $push: { wishlist: country._id } }, { new: true })
+                .then(updatedUser => {
+                    console.log(updatedUser)
+                })
+                .catch(next)
+        })
+        .catch()
+})
+
+
 
 module.exports = router;
 
