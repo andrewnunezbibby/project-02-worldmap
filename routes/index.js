@@ -24,6 +24,7 @@ router.get("/user", (req, res) => {
 });
 
 router.get("/user/:id/:tips", (req, res) => {
+
     tipModel
         .find({ name: req.query.name })
         .then(tips => {
@@ -34,15 +35,21 @@ router.get("/user/:id/:tips", (req, res) => {
 });
 
 router.get("/country/:codename", (req, res) => {
+    console.log("ici", req.params)
+    const regex = new RegExp(req.params.codename, "i")
     countryModel
-        .findOne({ codeName: req.params.codename })
+        .findOne({ codeName: { $regex: regex } })
         .then(country => {
-            console.log(country)
-            res.render("country", { country })
+            tipModel.find({ country: country._id }).populate("user").populate("country").then(tips => {
+                console.log("this is country", country)
+                res.render("country", { country, tips })
+            }).catch(dbError => { res.send(dbError) })
+
         })
         .catch(dbError => { res.send(dbError) })
     console.log(req.params.codename);
 });
+
 
 router.get("/country/:id/:tips", (req, res) => {
     tipModel
@@ -53,6 +60,23 @@ router.get("/country/:id/:tips", (req, res) => {
         })
         .catch(dbError => { res.send(dbError) })
 });
+
+router.post("/tips/add/:countryId/:codename", (req, res) => {
+    console.log(req.body)
+    tipModel.create({
+        name: req.body.name,
+        city: req.body.city,
+        body: req.body.body,
+        address: req.body.address,
+        user: req.session.currentUser._id,
+        category: req.body.category,
+        country: req.params.countryId
+    }).then(tip => {
+        res.redirect("/country/" + req.params.codename)
+    }).catch(err => {
+        console.log(err)
+    })
+})
 
 
 module.exports = router;
