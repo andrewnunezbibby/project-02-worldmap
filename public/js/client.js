@@ -1,4 +1,3 @@
-console.log("hello")
 const container = document.querySelector(".tips-box");
 // Filter on tips 
 
