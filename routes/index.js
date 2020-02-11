@@ -23,6 +23,16 @@ router.get("/user", (req, res) => {
         .catch(dbError => { res.send(dbError) })
 });
 
+router.get("/user/:id/:tips", (req, res) => {
+    tipModel
+        .find({ name: req.query.name })
+        .then(tips => {
+            console.log(tips)
+            res.render("user", { tips })
+        })
+        .catch(dbError => { res.send(dbError) })
+});
+
 router.get("/country/:codename", (req, res) => {
     countryModel
         .findOne({ codeName: req.params.codename })
@@ -32,6 +42,16 @@ router.get("/country/:codename", (req, res) => {
         })
         .catch(dbError => { res.send(dbError) })
     console.log(req.params.codename);
+});
+
+router.get("/country/:id/:tips", (req, res) => {
+    tipModel
+        .find({ name: req.query.name })
+        .then(tips => {
+            console.log(tips)
+            res.render("country", { tips })
+        })
+        .catch(dbError => { res.send(dbError) })
 });
 
 
