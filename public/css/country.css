@@ -1,5 +1,13 @@
+.country-box{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .country-header{
     justify-content: space-between;
+    width: 80%;
+    margin: 5rem 0;
 }
 
 .country-header-img{
@@ -55,6 +63,11 @@
     -webkit-text-stroke-color: black;
 }
 
+.country-page{
+    align-items: center;
+}
+
 .country-main{
-    margin: 10%;
+    width: 60%;
+    margin-bottom: 5rem;
 }

@@ -1,5 +1,5 @@
 <section class="page country-page flex">
-    <div class="country-box">
+    <div class="country-box flex">
         <div class="country-header flex">
             <div class="country-header-img">
                 <img src="{{country.image}}" alt="{{country.name}} image">
@@ -24,84 +24,83 @@
             </div>
         </div>
     </div>
-    <div class="tips-box">
+    <div class="tips-box flex">
         {{#unless isLoggedIn}}
-        Please <a href="/auth/signup">log in</a> to view the tips !
+        <p>Please <a href="/auth/signup">log in</a> to view the tips !</p>
         {{/unless}}
         {{#if isLoggedIn}}
-        <div class="tips-nav">
+        <div class="tips-nav flex">
             <div class="tips-nav-list">
-                <button class="tips-category active" type="button"><i class="fas fa-wine-glass-alt"></i> Bars</button>
-                <button class="tips-category" value="restaurant"><i class="fas fa-utensils"></i> Restaurants</button>
-                <button class="tips-category" value="park"><i class="fas fa-leaf"></i> Parks</button>
-                <button class="tips-category" value="monument"><i class="fas fa-eye"></i> Monuments</button>
-                <button class="tips-category" value="shopping"><i class="fas fa-shopping-bag"></i> Shopping</button>
-                <button class="tips-category" value="info"><i class="fas fa-info"></i> Info</button>
+                <button class="tips-category active" type="button"><i class="fas fa-wine-glass-alt"></i></button>
+                <button class="tips-category" value="restaurant"><i class="fas fa-utensils"></i></button>
+                <button class="tips-category" value="park"><i class="fas fa-leaf"></i></button>
+                <button class="tips-category" value="monument"><i class="fas fa-eye"></i></button>
+                <button class="tips-category" value="shopping"><i class="fas fa-shopping-bag"></i></button>
+                <button class="tips-category" value="info"><i class="fas fa-info"></i></button>
             </div>
             <div class="tips-nav-add">
                 <button type="button">+</button>
             </div>
         </div>
+        <form class="form tip-form hidden" action="/tips/add/{{country._id}}/{{country.codeName}}" method="post">
+            <div class="form-item flex">
+                <label for="category" class="form-label">Category</label>
+                <select name="category" class="form-input select" id="tip-form-category" required>
+                    <option value="-1" disabled selected>Choose a category</option>
+                    <option value="Bar">Bar</option>
+                    <option value="Restaurant">Restaurant</option>
+                    <option value="Museum">Museum</option>
+                    <option value="Shopping">Shopping</option>
+                    <option value="Garden">Garden</option>
+                    <option value="Info">Info</option>
+                </select>
+            </div>
+            <div class="form-item flex">
+                <label for="name" class="form-label">Name</label>
+                <input name="name" class="form-input" id="tip-form-name" type="text" placeholder="Chez Louise" required>
+            </div>
+            <div class="form-item flex">
+                <label for="country" class="form-label">Country</label>
+                <input name="country" class="form-input disabled" id="tip-form-country" type="text" value="{{country.name}}"
+                    disabled required>
+            </div>
+            <div class="form-item flex">
+                <label for="city" class="form-label">City</label>
+                <input name="city" class="form-input" id="tip-form-city" type="text" placeholder="Bordeaux" required>
+            </div>
+            <div class="form-item flex">
+                <label for="body" class="form-label">Info</label>
+                <textarea name="body" class="form-input textarea" id="tip-form-body" type="text"
+                    placeholder="Type here"></textarea>
+            </div>
+            <div class="form-item flex">
+                <label for="address" class="form-label">Address</label>
+                <input name="address" class="form-input" id="tip-form-address" type="text"
+                    placeholder="12 rue Merlot // Saint-Pierre" required>
+            </div>
+            <div class="form-item flex">
+                <label for="user" class="form-label">By</label>
+                <input name="user" class="form-input" id="tip-form-user" type="text" value="{{currentUser.username}}"
+                    required>
+            </div>
+            <button class="form-button" id="tip-form-button" type="submit">Submit</button>
+        </form>
         <div class="tips-list">
             {{#each tips}}
-            <article class="tip-container">
-                <div class="tip-category">
-                    {{this.category}}
-                </div>
+            <hr>
+            <article class="tip-container flex">
                 <div class="tip-content">
-                    <h3>{{this.name}}</h3>
-                    <span class="tip-location">{{this.city}}, {{this.country.name}}</span>
-                    <hr>
-                    <p class="tip-body">{{this.body}}</p>
-                    <span class="tip-address">{{this.address}}</span>
-                    <span class="tip-user">{{this.user.username}}</span>
+                    <div class="tip-head">
+                        <h3>{{this.name}}</h3> <p>({{this.category}})</p>
+                    </div>
+                    <p class="tip-location">{{this.city}}, {{this.country.name}}</p>
+                    <p class="tip-body">"{{this.body}}"</p>
+                    <p class="tip-address">{{this.address}}</p>
+                    <p class="tip-user">Added by : {{this.user.username}}</p>
                 </div>
             </article>
             {{/each}}
         </div>
         {{/if}}
     </div>
-    <form class="form tip-form hidden" action="/tips/add/{{country._id}}/{{country.codeName}}" method="post">
-        <div class="form-item flex">
-            <label for="category" class="form-label">Category</label>
-            <select name="category" class="form-input select" id="tip-form-category" required>
-                <option value="-1" disabled selected>Choose a category</option>
-                <option value="Bar">Bar</option>
-                <option value="Restaurant">Restaurant</option>
-                <option value="Museum">Museum</option>
-                <option value="Shopping">Shopping</option>
-                <option value="Garden">Garden</option>
-                <option value="Info">Info</option>
-            </select>
-        </div>
-        <div class="form-item flex">
-            <label for="name" class="form-label">Name</label>
-            <input name="name" class="form-input" id="tip-form-name" type="text" placeholder="Chez Louise" required>
-        </div>
-        <div class="form-item flex">
-            <label for="country" class="form-label">Country</label>
-            <input name="country" class="form-input disabled" id="tip-form-country" type="text" value="{{country.name}}"
-                disabled required>
-        </div>
-        <div class="form-item flex">
-            <label for="city" class="form-label">City</label>
-            <input name="city" class="form-input" id="tip-form-city" type="text" placeholder="Bordeaux" required>
-        </div>
-        <div class="form-item flex">
-            <label for="body" class="form-label">Info</label>
-            <textarea name="body" class="form-input textarea" id="tip-form-body" type="text"
-                placeholder="Type here"></textarea>
-        </div>
-        <div class="form-item flex">
-            <label for="address" class="form-label">Address</label>
-            <input name="address" class="form-input" id="tip-form-address" type="text"
-                placeholder="12 rue Merlot // Saint-Pierre" required>
-        </div>
-        <div class="form-item flex">
-            <label for="user" class="form-label">By</label>
-            <input name="user" class="form-input" id="tip-form-user" type="text" value="{{currentUser.username}}"
-                required>
-        </div>
-        <button class="form-button" id="tip-form-button" type="submit">Submit</button>
-    </form>
 </section>
