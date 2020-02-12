@@ -2,6 +2,7 @@ header{
     width: 100%;
     background: rgba(255, 255, 255, 0.7);
     border-bottom: 4px dotted black;
+    margin-bottom: 2rem;
 }
 
 .header-nav{

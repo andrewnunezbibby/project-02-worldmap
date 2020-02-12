@@ -42,62 +42,63 @@
                 <button type="button">+</button>
             </div>
         </div>
-        <form class="form tip-form hidden" action="/tips/add/{{country._id}}/{{country.codeName}}" method="post">
-            <div class="form-item flex">
-                <label for="category" class="form-label">Category</label>
-                <select name="category" class="form-input select" id="tip-form-category" required>
-                    <option value="-1" disabled selected>Choose a category</option>
-                    <option value="Bar">Bar</option>
-                    <option value="Restaurant">Restaurant</option>
-                    <option value="Museum">Museum</option>
-                    <option value="Shopping">Shopping</option>
-                    <option value="Garden">Garden</option>
-                    <option value="Info">Info</option>
-                </select>
+        <form class="form tip-form flex hidden" action="/tips/add/{{country._id}}/{{country.codeName}}" method="post">
+            <div class="tip-inputs flex">
+                <div class="form-item flex">
+                    <label for="category" class="form-label">Category :</label>
+                    <select name="category" class="form-input select" id="tip-form-category" required>
+                        <option value="-1" disabled selected>Choose a category</option>
+                        <option value="Bar">Bar</option>
+                        <option value="Restaurant">Restaurant</option>
+                        <option value="Museum">Museum</option>
+                        <option value="Shopping">Shopping</option>
+                        <option value="Garden">Garden</option>
+                        <option value="Info">Info</option>
+                    </select>
+                </div>
+                <div class="form-item flex">
+                    <label for="name" class="form-label">Name :</label>
+                    <input name="name" class="form-input" id="tip-form-name" type="text" placeholder="Chez Louise" required>
+                </div>
+                <div class="form-item flex">
+                    <label for="country" class="form-label">Country :</label>
+                    <input name="country" class="form-input disabled" id="tip-form-country" type="text" value="{{country.name}}"
+                        disabled required>
+                </div>
+                <div class="form-item flex">
+                    <label for="city" class="form-label">City :</label>
+                    <input name="city" class="form-input" id="tip-form-city" type="text" placeholder="Bordeaux" required>
+                </div>
+                <div class="form-item flex">
+                    <label for="body" class="form-label">Info :</label>
+                    <textarea name="body" class="form-input textarea" id="tip-form-body" type="text"
+                        placeholder="Type here"></textarea>
+                </div>
+                <div class="form-item flex">
+                    <label for="address" class="form-label">Address :</label>
+                    <input name="address" class="form-input" id="tip-form-address" type="text"
+                        placeholder="12 rue Merlot // Saint-Pierre" required>
+                </div>
+                <div class="form-item flex">
+                    <label for="user" class="form-label">By :</label>
+                    <input name="user" class="form-input" id="tip-form-user" type="text" value="{{currentUser.username}}"
+                        required disabled>
+                </div>
+
             </div>
-            <div class="form-item flex">
-                <label for="name" class="form-label">Name</label>
-                <input name="name" class="form-input" id="tip-form-name" type="text" placeholder="Chez Louise" required>
-            </div>
-            <div class="form-item flex">
-                <label for="country" class="form-label">Country</label>
-                <input name="country" class="form-input disabled" id="tip-form-country" type="text" value="{{country.name}}"
-                    disabled required>
-            </div>
-            <div class="form-item flex">
-                <label for="city" class="form-label">City</label>
-                <input name="city" class="form-input" id="tip-form-city" type="text" placeholder="Bordeaux" required>
-            </div>
-            <div class="form-item flex">
-                <label for="body" class="form-label">Info</label>
-                <textarea name="body" class="form-input textarea" id="tip-form-body" type="text"
-                    placeholder="Type here"></textarea>
-            </div>
-            <div class="form-item flex">
-                <label for="address" class="form-label">Address</label>
-                <input name="address" class="form-input" id="tip-form-address" type="text"
-                    placeholder="12 rue Merlot // Saint-Pierre" required>
-            </div>
-            <div class="form-item flex">
-                <label for="user" class="form-label">By</label>
-                <input name="user" class="form-input" id="tip-form-user" type="text" value="{{currentUser.username}}"
-                    required>
-            </div>
-            <button class="form-button" id="tip-form-button" type="submit">Submit</button>
+            <button class="form-button" id="tip-form-button">Submit</button>
         </form>
         <div class="tips-list">
             {{#each tips}}
             <hr>
             <article class="tip-container flex">
-                <div class="tip-content">
-                    <div class="tip-head">
-                        <h3>{{this.name}}</h3> <p>({{this.category}})</p>
-                    </div>
-                    <p class="tip-location">{{this.city}}, {{this.country.name}}</p>
-                    <p class="tip-body">"{{this.body}}"</p>
-                    <p class="tip-address">{{this.address}}</p>
-                    <p class="tip-user">Added by : {{this.user.username}}</p>
+                <div class="tip-head">
+                    <h3>{{this.name}}</h3> <p>({{this.category}})</p>
                 </div>
+                <p class="tip-location">{{this.city}}, {{this.country.name}}</p>
+                <p class="tip-body">"{{this.body}}"</p>
+                <p class="tip-address">{{this.address}}</p>
+                <p class="tip-user">Added by : {{this.user.username}}</p>  
             </article>
             {{/each}}
         </div>

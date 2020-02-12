@@ -49,8 +49,8 @@ server.locals.site_url = process.env.SITE_URL;
 function checkloginStatus(req, res, next) {
   res.locals.user = req.session.currentUser ? req.session.currentUser : null;
   // access this value @ {{user}} or {{user.prop}} in .hbs
-  // res.locals.isLoggedIn = Boolean(req.session.currentUser)
-  res.locals.isLoggedIn = true
+  res.locals.isLoggedIn = Boolean(req.session.currentUser)
+  // res.locals.isLoggedIn = true
   // access this value @ {{isLoggedIn}} in .hbs
   next() // continue to the requested route
 }

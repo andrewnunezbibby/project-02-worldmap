@@ -1,13 +1,17 @@
 {
   "name": "project-02-worldmap",
   "version": "1.0.0",
+  "engines": {
+    "node": "13.1.0",
+    "npm": "6.13.7"
+  },
   "description": "THE BEST PROJECT EVAAA",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon ./server.js -e .js,.hbs",
-    "start-prod": "node ./bin/www",
-    "start": "nodemon ./bin/www -e .hbs,.js",
+    "start": "node ./bin/www",
+    "start-dev": "nodemon ./bin/www -e .hbs,.js",
     "seed": "node ./bin/seeds.js"
   },
   "repository": {

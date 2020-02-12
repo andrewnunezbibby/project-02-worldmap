@@ -9,11 +9,11 @@
 @import "./signin.css";
 @import "./signup.css";
 
-/* * {
-    border: 1px solid #ff00ff;
+* {
+    /* border: 1px solid #ff00ff; */
     box-sizing: border-box;
     vertical-align: baseline;
-} */
+}
 
 html, body{
     margin: 0;
@@ -21,6 +21,7 @@ html, body{
     font-size: 100%;
     font-family: Helvetica, sans-serif;
     display: flex;
+    flex-wrap: nowrap;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
@@ -30,6 +31,8 @@ html, body{
 
 body{
     background: linear-gradient(to right, pink 0%, lightsalmon 50%, gold 100%);
+    background-attachment: fixed;
+    overflow: visible;
 }
 
 ul{
@@ -50,9 +53,9 @@ a{
     box-sizing: border-box;
     padding: 1.5rem 3rem;
     width: 70%;
-    min-width: 375px;
     flex-direction: column;
-    margin: auto 0;
+    justify-content: center;
+    align-items: center;
     background-color: rgba(255, 255, 255, 0.5);
 }
 
@@ -74,6 +77,15 @@ h3{
 
 tspan{
     display: none;
+}
+
+button:hover{
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+}
+
+button:focus {
+    outline: none;
 }
 
 #country-results {

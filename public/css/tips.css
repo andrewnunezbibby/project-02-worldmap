@@ -7,7 +7,6 @@
 .tips-nav button{
     width: 4rem;
     color: lightsalmon;
-    cursor: pointer;
     background: none;
     padding: 10px;
     font-size: 1.5em;
@@ -16,16 +15,8 @@
     margin-bottom: 5px;
 }
 
-.tips-category:hover, .tips-nav-add>button:hover{
-    background-color: rgba(255, 255, 255, 0.5)
-}
-
 .tips-category.is-active {
     border: 2px solid lightsalmon;
-}
-
-button:focus {
-    outline: none;
 }
 
 .tips-box {
@@ -34,18 +25,9 @@ button:focus {
     margin-bottom: 3rem;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     border: 1px solid black;
     border-radius: 2rem;
-}
-
-#tip-form-button {
-    display: inline-block;
-    padding: 1% 5%;
-    margin-top: 2%;
-    border-radius: 52rem;
-    background: chocolate;
-    color: rgb(250, 250, 248);
-    text-shadow: black 0.1em 0.1em 0.2em;
 }
 
 .tips-box>p{
@@ -60,10 +42,12 @@ hr{
 }
 
 .tips-list{
-    padding: 2rem 5rem;
+    padding: 2rem 3rem;
+    width: 100%;
 }
 
-.tip-content{
+.tip-container{
+    flex-direction: column;
     padding: 1.5rem 3rem;
 }
 
@@ -86,9 +70,87 @@ hr{
 
 .tip-address{
     font-size: 0.8em;
+    margin-bottom: 0;
 }
 
 .tip-user{
+    margin-top: 0.5rem;
     font-size: 0.8em;
     color: rgb(110, 110, 110);
+}
+
+.tip-form{
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 2em;
+    padding: 2rem 4rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+}
+
+.tip-inputs>div{
+    margin-bottom: 1rem;
+}
+
+.tip-form button {
+    margin-top: 2rem;
+    background: none;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 1em;
+    padding: 5px;
+}
+
+.tip-form .form-item{
+    justify-content: space-between;
+}
+
+.tip-inputs{
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.tip-form input, .tip-form textarea, .tip-form select{
+    width: 200px;
+    background: none;
+    padding: 3px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+textarea{
+    resize: vertical;
+}
+
+@media screen and (max-width: 1250px){
+    .tip-inputs .form-item{
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .tip-form{
+        padding: 2rem 0;
+
+    }
+    .tip-form label{
+        margin-bottom: 1rem;
+    }
+}
+
+@media screen and (max-width: 850px){
+    .tips-list{
+        padding: 2rem 0;
+    }
+}
+
+@media screen and (max-width: 700px){
+    .tips-box{
+        width: 100%;
+    }
+    .tip-form{
+        width: 100%;
+    }
 }
