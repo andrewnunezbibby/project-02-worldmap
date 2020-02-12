@@ -3,6 +3,7 @@
     margin-bottom: 3rem;
     display: none;
     justify-content: space-between;
+    align-items: center;
 }
 
 .guide-img{
@@ -11,4 +12,15 @@
 
 .guide-text{
     width: 60%;
+}
+
+@media screen and (max-width: 900px){
+    .guide-article{
+        flex-direction: column;
+    }
+
+    .guide-text{
+        width: 100%;
+        text-align: center;
+    }
 }

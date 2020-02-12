@@ -1,0 +1,9 @@
+header{
+    position: fixed !important;
+    top: 0 !important;
+}
+
+footer{
+    position: fixed !important;
+    bottom: 0 !important;
+}
