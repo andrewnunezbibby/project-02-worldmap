@@ -2,11 +2,13 @@
 const closeBtn = document.getElementById("closeBtn");
 const popupDiv = document.getElementById("popupDiv");
 
-function closePopup(){
+function closePopup() {
     popupDiv.classList.add("hidden");
 };
 
-closeBtn.onclick = closePopup;
+if (closeBtn) {
+    closeBtn.onclick = closePopup;
+}
 
 
 /// HOME SIMPLEMAPS HIDE

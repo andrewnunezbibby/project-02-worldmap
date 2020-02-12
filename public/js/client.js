@@ -2,17 +2,20 @@ const container = document.querySelector(".tips-nav-list");
 const visitedButton = document.querySelector("#country-status-visited");
 const wishlistButton = document.querySelector("#country-status-wishlist");
 const searchBar = document.querySelector("#search-bar");
+const searchResultsList = document.querySelector("#country-results");
+
 // Filter on tips 
 
 const btnAddTips = document.querySelector(".tips-nav-add button")
 // function display
 
 
-btnAddTips.onclick = function (e) {
-    const form = document.querySelector(".form.tip-form")
-    form.classList.toggle("hidden")
+if (btnAddTips) {
+    btnAddTips.onclick = function (e) {
+        const form = document.querySelector(".form.tip-form")
+        form.classList.toggle("hidden")
+    }
 }
-
 // Filter on tips 
 
 function handleVisited(evt) {
@@ -23,9 +26,45 @@ function handleVisited(evt) {
 
 function handleSearch(evt) {
     const input = evt.target.value
-    const regex = new Regexp(/${input}/, 'i');
-    // axios.get(`/country/${countryId}/visited`).then()
-    console.log("======>" + regex)
+    // const regex = new RegExp(input, 'i');
+    console.log("======>" + input)
+    axios.get(`/country/search/${input}`).then(res => {
+        //create a div
+        showResultsList(res.data);
+        // showResultsInMap(res);
+        //display everycountry
+        //class active for matching states
+        console.log(res.data)
+    })
+}
+
+function showResultsList(searchResults) {
+    searchResultsList.innerHTML = "";
+    searchResults.forEach(result => {
+        // let resultItem = document.createElement("option")
+        // resultItem.value = result.name;
+        // searchResultsList.appendChild(resultItem);
+        const markup = `<div id=sr_${result.codeName}><option value=${result.name}>${result.name}</option></div>`;
+        const tpl = document.createElement("template");
+        tpl.innerHTML = markup;
+        const node = tpl.content.childNodes[0];
+        node.onclick = () => addClickListener(result.codeName);
+        searchResultsList.appendChild(node);
+
+    })
+}
+
+function addClickListener(code) {
+    console.log("CLICKED", code);
+    let targetCountry = document.getElementById(`sr_${code}`)
+    if (targetCountry) {
+        console.log(targetCountry)
+        targetCountry.onclick = () => {
+            window.location = `/country/${code}`
+        }
+
+    }
+
 }
 
 function handleWished(evt) {
@@ -52,9 +91,13 @@ function handleClickedTips(evt) {
 }
 
 
-container.onclick = handleClickedTips
-visitedButton.onclick = (evt) => handleVisited(evt);
-wishlistButton.onclick = (evt) => handleVisited(evt);
-searchBar.oninput = (evt) => handleSearch(evt);
+if (container)
+    container.onclick = handleClickedTips
+if (visitedButton)
+    visitedButton.onclick = (evt) => handleVisited(evt);
+if (wishlistButton)
+    wishlistButton.onclick = (evt) => handleVisited(evt);
+if (searchBar)
+    searchBar.oninput = (evt) => handleSearch(evt);
 
 

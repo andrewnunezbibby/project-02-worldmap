@@ -87,3 +87,12 @@ button:hover{
 button:focus {
     outline: none;
 }
+
+#country-results {
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+/* #quick-search {
+    z-index: 1;
+} */
