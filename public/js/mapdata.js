@@ -1,30 +1,32 @@
 var simplemaps_worldmap_mapdata = {
   main_settings: {
     //General settings
-    width: "responsive", //'700' or 'responsive'
+    width: "1200", //'700' or 'responsive'
     background_color: "#FFFFFF",
     background_transparent: "yes",
     border_color: "#ffffff",
+    border_opacity: 0,
     popups: "detect",
 
     //State defaults
     state_description: "State description",
-    state_color: "#88A4BC",
-    state_hover_color: "#3B729F",
-    state_url: "http://simplemaps.com",
+    state_color: "#ffffff",
+    state_opacity: 0.5,
+    state_hover_color: "lightsalmon",
+    state_url: "",
     border_size: 1.5,
     all_states_inactive: "no",
     all_states_zoomable: "no",
 
     //Location defaults
-    location_description: "Location description",
+    location_description: "",
     location_color: "#FF0067",
     location_opacity: 0.8,
     location_hover_opacity: 1,
     location_url: "",
     location_size: 25,
-    location_type: "square",
-    location_image_source: "frog.png",
+    location_type: "",
+    location_image_source: "",
     location_border_color: "#FFFFFF",
     location_border: 2,
     location_hover_border: 2.5,
@@ -61,10 +63,10 @@ var simplemaps_worldmap_mapdata = {
     //Advanced settings
     div: "map",
     auto_load: "yes",
-    url_new_tab: "yes",
+    url_new_tab: "no",
     images_directory: "default",
     fade_time: 0.1,
-    link_text: "View Website",
+    link_text: "",
     state_image_url: "",
     state_image_position: "",
     location_image_url: ""
@@ -925,13 +927,6 @@ var simplemaps_worldmap_mapdata = {
     IC: {
       name: "Canary Islands (Spain)",
       url: "/country/IC"
-    }
-  },
-  locations: {
-    paris: {
-      name: "Paris",
-      lat: "48.866666670",
-      lng: "2.333333333"
     }
   },
   labels: {},

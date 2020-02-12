@@ -1,3 +1,15 @@
+.home-page{
+    background: none;
+    box-sizing: border-box;
+    padding: 1.5rem 3rem;
+    width: 100%;
+    min-width: 375px;
+    flex-direction: column;
+    margin: auto 0;
+    justify-content: center;
+    align-items: center;
+}
+
 .home-popup{
     position: fixed;
     top: 50%;
@@ -10,6 +22,7 @@
     padding: 20px;
     border-radius: 12px;
     border: 4px dotted black;
+    z-index: 8;
 }
 
 .popup-top{
