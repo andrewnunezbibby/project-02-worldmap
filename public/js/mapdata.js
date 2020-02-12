@@ -9,7 +9,7 @@ var simplemaps_worldmap_mapdata = {
     popups: "detect",
 
     //State defaults
-    state_description: "State description",
+    state_description: "Click to explore !",
     state_color: "#ffffff",
     state_opacity: 0.5,
     state_hover_color: "lightsalmon",
@@ -55,9 +55,9 @@ var simplemaps_worldmap_mapdata = {
     //Popup settings
     popup_color: "white",
     popup_opacity: 0.9,
-    popup_shadow: 1,
+    popup_shadow: 0,
     popup_corners: 5,
-    popup_font: "12px/1.5 Verdana, Arial, Helvetica, sans-serif",
+    popup_font: "12px/1.5 Helvetica, sans-serif",
     popup_nocss: "no",
 
     //Advanced settings
