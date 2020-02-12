@@ -14,7 +14,7 @@ var simplemaps_worldmap_mapdata = {
     state_opacity: 0.5,
     state_hover_color: "lightsalmon",
     state_url: "",
-    border_size: 1.5,
+    border_size: 1,
     all_states_inactive: "no",
     all_states_zoomable: "no",
 
