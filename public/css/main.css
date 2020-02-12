@@ -75,3 +75,12 @@ h3{
 tspan{
     display: none;
 }
+
+#country-results {
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+/* #quick-search {
+    z-index: 1;
+} */

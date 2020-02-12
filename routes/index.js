@@ -34,6 +34,17 @@ router.get("/user/:id/:tips", (req, res) => {
         .catch(dbError => { res.send(dbError) })
 });
 
+router.get("/country/search/:countryname", (req, res) => {
+    const regex = new RegExp(req.params.countryname, "i")
+    countryModel
+        .find({ name: { $regex: regex } })
+        .then(countryMatches => {
+            console.log("SEARCH" + countryMatches)
+            res.send(countryMatches)
+        }).catch(dbError => { res.send(dbError) })
+
+})
+
 router.get("/country/:codename", (req, res) => {
     console.log("ici", req.params)
     const regex = new RegExp(req.params.codename, "i")
@@ -110,7 +121,6 @@ router.patch("/country/:codename/wishlist", (req, res, next) => {
         })
         .catch()
 })
-
 
 
 module.exports = router;
