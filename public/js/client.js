@@ -64,7 +64,6 @@ function addClickListener(code) {
         }
 
     }
-
 }
 
 function handleWished(evt) {
