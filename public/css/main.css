@@ -88,36 +88,3 @@ button:focus {
     outline: none;
 }
 
-.home-search{
-    width: 60%;
-    border: 1px solid black;
-    border-radius: 2em;
-    margin-bottom: 1rem;
-    padding: 0 3rem;
-}
-
-.home-search label{
-    margin-right: 1rem;
-}
-
-.home-search input{
-    padding: 5px;
-    background: none;
-    border: none;
-    font-size: 1em;
-    outline: none;
-}
-
-#quick-search {
-    z-index: 5;
-}
-
-#country-results{
-    display: block;
-    position: absolute;
-    width: 30%;
-    max-height: 100px;
-    overflow-y: scroll;
-    z-index: 5;
-    padding-left: 5em;
-}
