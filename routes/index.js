@@ -19,7 +19,11 @@ router.get("/about", (req, res) => {
 
 router.get("/user", (req, res) => {
     userModel.findById(req.params.id)
-        .then(user => res.render("user", { user, js: ["user"] }))
+        .then(user => {
+            tipModel.find({user: user._id})
+            .then(tips => res.render("user", { user, tips, js: ["user"] }))
+            .catch(dbError => { res.send(dbError) })
+        })
         .catch(dbError => { res.send(dbError) })
 });
 
@@ -45,13 +49,11 @@ router.get("/country/search/:countryname", (req, res) => {
 })
 
 router.get("/country/:codename", (req, res) => {
-    console.log("ici", req.params)
     const regex = new RegExp(req.params.codename, "i")
     countryModel
         .findOne({ codeName: { $regex: regex } })
         .then(country => {
             tipModel.find({ country: country._id }).populate("user").populate("country").then(tips => {
-                console.log("this is country", country)
                 res.render("country", { country, tips })
             }).catch(dbError => { res.send(dbError) })
 
