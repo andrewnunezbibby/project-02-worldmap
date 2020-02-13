@@ -6,7 +6,7 @@
         <div class="user-main flex">
             <div class="user-main-visited">
                 <h3>Visited</h3>
-                {{!-- {{> searchBar}} --}}
+                {{> searchBar}}
                 <ul>
                     {{#each currentUser.visited}}
                     <li><a href="/country/{{currentUser._id}}">{{currentUser.name}}</a></li>
@@ -15,7 +15,7 @@
             </div>
             <div class="user-main-wishlist">
                 <h3>Wishlist</h3>
-                {{!-- {{> searchBar}} --}}
+                {{> searchBar}}
                 <ul>
                     {{#each currentUser.wishlist}}
                     <li><a href="/country/{{currentUser._id}}">{{currentUser.name}}</a></li>
