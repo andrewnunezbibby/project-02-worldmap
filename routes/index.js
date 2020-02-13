@@ -20,9 +20,7 @@ router.get("/about", (req, res) => {
 router.get("/user", (req, res) => {
     userModel.findById(req.params.id)
         .then(user => {
-            tipModel.find({user: user._id})
-            .then(tips => res.render("user", { user, tips, js: ["user"] }))
-            .catch(dbError => { res.send(dbError) })
+            res.render("user", { user, js: ["user"] })
         })
         .catch(dbError => { res.send(dbError) })
 });
