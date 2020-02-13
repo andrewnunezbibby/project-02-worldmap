@@ -19,7 +19,8 @@ router.get("/about", (req, res) => {
 });
 
 router.get("/user", (req, res) => {
-    userModel.findById(req.params.id)
+    userModel.findById(req.session.currentUser)
+        .populate("visited").populate("wishlist")
         .then(user => {
             res.render("user", { user, js: ["user"] })
         })
@@ -77,7 +78,7 @@ router.get("/country/:id/:tips", (req, res) => {
 router.get('/filter', protectRoute, (req, res, next) => {
     const categoryArray = Array.isArray(req.query.filter) ? req.query.filter : [req.query.filter];
     const country = req.query.country;
-    
+
     tipModel
         .find({ $and: [{ country }, { category: { $in: categoryArray } }] })
         .then(tips => {
