@@ -1,29 +1,31 @@
-<section class="page user-page">
+<link rel="stylesheet" href="/css/user.css">
+<section class="page user-page flex">
     <div class="user-box">
-        <div class="user-header">
-            <div class="user-header-avatar">
-                <img src="{{currentUser.avatar}}" alt="{{currentUser.username}} avatar">
-            </div>
+        <div class="user-header flex">
             <div class="user-header-username">
                 <h2>{{currentUser.username}}</h2>
             </div>
         </div>
-        <div class="user-main">
-            <div class="user-main-visited">
-                <h3>Visited</h3>
-                {{> searchBar}}
+        <div class="user-main flex">
+            <div class="user-main-visited flex">
+                <h3><i class="fas fa-star"></i> Visited</h3>
+                <div class="user-search">
+                    {{> searchBar}}
+                </div>
                 <ul>
                     {{#each user.visited}}
-                    <li><a href="/country/{{this.codeName}}">{{this.name}}</a></li>
+                    <li class="visited-item" id="user-list-visited"><a href="/country/{{this.codeName}}">{{this.name}}</a></li>
                     {{/each}}
                 </ul>
             </div>
-            <div class="user-main-wishlist">
-                <h3>Wishlist</h3>
-                {{> searchBar}}
+            <div class="user-main-wishlist flex">
+                <h3><i class="fas fa-heart"></i> Wishlist</h3>
+                <div class="user-search">
+                    {{> searchBar}}
+                </div>
                 <ul>
                     {{#each user.wishlist}}
-                    <li><a href="/country/{{this.codeName}}">{{this.name}}</a></li>
+                    <li class="wishlist-item" id="user-list-wishlist"><a href="/country/{{this.codeName}}">{{this.name}}</a></li>
                     {{/each}}
                 </ul>
             </div>
@@ -31,17 +33,7 @@
     </div>
     <div class="tips-box">
         <div class="tips-nav flex">
-
         {{> tipsList}}
-
-            {{!-- <div class="tips-nav-list">
-                <button class="tips-category active" type="button"><i class="fas fa-wine-glass-alt"></i></button>
-                <button class="tips-category" type="button"><i class="fas fa-utensils"></i></button>
-                <button class="tips-category" type="button"><i class="fas fa-leaf"></i></button>
-                <button class="tips-category" type="button"><i class="fas fa-eye"></i></button>
-                <button class="tips-category" type="button"><i class="fas fa-shopping-bag"></i></button>
-                <button class="tips-category" type="button"><i class="fas fa-info"></i></button>
-            </div> --}}
         </div>
         <div class="tips-list">
             {{#unless tips}}

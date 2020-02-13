@@ -1,10 +1,6 @@
-.user-page{
-    justify-content: center;
-    align-items: center;
-}
-
 .user-box{
-    width: 70%;
+    width: 80%;
+    padding: 3rem;
 }
 
 .user-header{
@@ -12,11 +8,22 @@
 }
 
 .user-main{
-    justify-content: space-evenly;
+    margin-top: 3rem;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
-.user-main div{
+.user-main>div{
+    width: 45%;
     margin-bottom: 2rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-main h3{
+    text-align: center;
 }
 
 
@@ -26,4 +33,42 @@
         align-items: center;
         flex-direction: column;
     }
+}
+
+.user-search{
+    background-color: rgba(255,255,255, 0.5);
+    border: 1px solid black;
+    border-radius: 2em;
+    margin: 1rem 0;
+}
+
+.user-search label{
+    display: none;
+}
+
+.user-search input{
+    padding: 5px;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.country-results{
+    display: block;
+    line-height: 1.5em;
+    position: absolute;
+    max-height: 100px;
+    overflow-y: scroll;
+    z-index: 5;
+    width: 35%;
+    background-color: rgba(255,255,255, 0.5);
+}
+
+.country-results>div{
+    text-align: center;
+}
+
+#user-list-visited, #user-list-wishlist{
+    list-style-type: disc;
+    font-size: 0.8em;
 }

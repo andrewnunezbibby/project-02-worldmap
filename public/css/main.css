@@ -1,16 +1,14 @@
 @import "./header.css";
 @import "./footer.css";
-@import "./home.css";
 @import "./guide.css";
 @import "./about.css";
 @import "./country.css";
-@import "./user.css";
 @import "./tips.css";
 @import "./signin.css";
 @import "./signup.css";
 
 * {
-    /* border: 1px solid #ff00ff; */
+    border: 1px solid #ff00ff;
     box-sizing: border-box;
     vertical-align: baseline;
 }
@@ -62,7 +60,7 @@ a{
 h2{
     margin: 0 0 1.5rem;
     font-family: 'Cabin Sketch', cursive;
-    font-size: 2em;
+    font-size: 3em;
 }
 
 h3{
@@ -90,4 +88,12 @@ button:focus {
 
 button i{
     pointer-events: none;
+}
+
+.visited-item{
+    color: purple
+}
+
+.wishlist-item{
+    color: violet;
 }
