@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const userModel = require("../models/User")
 const countryModel = require("../models/Country")
+const protectRoute = require("../middlewares/protectRoute")
 const tipModel = require("../models/Tip")
 
 
@@ -47,6 +48,8 @@ router.get("/country/search/:countryname", (req, res) => {
 })
 
 router.get("/country/:codename", (req, res) => {
+    const category = req.query.category
+    console.log("ici", req.params)
     const regex = new RegExp(req.params.codename, "i")
     countryModel
         .findOne({ codeName: { $regex: regex } })
@@ -70,6 +73,17 @@ router.get("/country/:id/:tips", (req, res) => {
         })
         .catch(dbError => { res.send(dbError) })
 });
+
+router.get('/filter', protectRoute, (req, res, next) => {
+    const categoryArray = Array.isArray(req.query.filter) ? req.query.filter : [req.query.filter];
+    const country = req.query.country;
+    
+    tipModel
+        .find({ $and: [{ country }, { category: { $in: categoryArray } }] })
+        .then(tips => {
+            res.send(tips)
+        })
+})
 
 router.post("/tips/add/:countryId/:codename", (req, res) => {
     console.log(req.body)

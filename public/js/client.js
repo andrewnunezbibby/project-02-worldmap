@@ -1,7 +1,9 @@
 const container = document.querySelector(".tips-nav-list");
 const visitedButton = document.querySelector("#country-status-visited");
 const wishlistButton = document.querySelector("#country-status-wishlist");
-
+const searchBar = document.querySelector("#search-bar");
+const searchResultsList = document.querySelector("#country-results");
+const tipsList = document.querySelector('.tips-list');
 // Filter on tips 
 
 const btnAddTips = document.querySelector(".tips-nav-add button")
@@ -29,25 +31,49 @@ function handleWished(evt) {
     console.log("======>" + countryId)
 }
 
+function appendTips(tips) {
+    tipsList.innerHTML = '';
+    tips.forEach((tip) => {
+        const markup = `<hr>
+        <article class="tip-container flex">
+            <div class="tip-head">
+                <h3>${tip.name}</h3> <p>(${tip.category})</p>
+            </div>
+            <p class="tip-location">${tip.city}, ${tip.country}</p>
+            <p class="tip-body">"${tip.body}"</p>
+            <p class="tip-address">${tip.address}</p>
+            <p class="tip-user">Added by : ${tip.user}</p>  
+        </article>`
+        tipsList.innerHTML += markup;
+    })
+
+}
+
 function handleClickedTips(evt) {
 
     evt.target.classList.toggle("is-active");
     const clickedCatTip = container.querySelectorAll("button.is-active");
-    var query = "?";
-    console.log(clickedCatTip)
+    const countryId = document.querySelector('.tips-nav-list').id;
+    var query = "?country=" + countryId + '&';
+    // console.log('1', clickedCatTip)
 
     clickedCatTip.forEach((btn, i) => {
-        query += "filter=" + btn.value + (i < clickedCatTip.length - 1 && "&")
+        console.log(btn.value)
+        query += "filter=" + btn.value + (i < clickedCatTip.length - 1 ? "&" : "")
     })
-
-    console.log(query)
+    
+    // query = query.replace('false', '')
+    console.log('query', query)
     axios.get("/filter" + query)
-        .then(apiRes => console.log(apiRes))
+        .then(apiRes =>  {
+            const newTips = apiRes.data
+            appendTips(newTips);
+        })
         .catch(apiErr => console.error(apiErr))
 }
 
 
-if (container)
+// if (container)
     container.onclick = handleClickedTips
 if (visitedButton)
     visitedButton.onclick = (evt) => handleVisited(evt);
