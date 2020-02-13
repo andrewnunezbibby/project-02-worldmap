@@ -3,6 +3,8 @@ import SearchWidget from './searchWidget.js';
 const searchWidget = new SearchWidget('/country/search', goToCountry);
 const searchBar = document.querySelector(".search-bar");
 
+// dynamically add classes to visted and wishlist countries
+
 
 searchBar.oninput = (evt) => searchWidget.handleSearch(evt);
 
