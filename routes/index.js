@@ -31,7 +31,7 @@ router.get("/user", (req, res) => {
 
 
 // USERS' TIPS
-router.get("/user/:id/:tips",protectRoute, (req, res, next) => {
+router.get("/user/:id/:tips", (req, res, next) => {
 
     tipModel
         .find({ name: req.query.name })
@@ -73,7 +73,7 @@ router.get("/country/:codename", (req, res) => {
 });
 
 // ALL THE TIPS
-router.get("/country/:id/:tips",protectRoute, (req, res) => {
+router.get("/country/:id/:tips", (req, res) => {
     tipModel
         .find({ name: req.query.name })
         .then(tips => {
@@ -85,7 +85,7 @@ router.get("/country/:id/:tips",protectRoute, (req, res) => {
 });
 
 // FILTER TIPS BY CATEGORIES
-router.get('/filter', protectRoute, (req, res, next) => {
+router.get('/filter', (req, res, next) => {
     const categoryArray = Array.isArray(req.query.filter) ? req.query.filter : [req.query.filter];
     const country = req.query.country;
 
@@ -102,7 +102,7 @@ router.get('/filter', protectRoute, (req, res, next) => {
 })
 
 // ADD NEW TIP
-router.post("/tips/add/:countryId/:codename",protectRoute, (req, res, next) => {
+router.post("/tips/add/:countryId/:codename", (req, res, next) => {
     console.log(req.body)
     tipModel.create({
         name: req.body.name,
@@ -123,7 +123,7 @@ router.post("/tips/add/:countryId/:codename",protectRoute, (req, res, next) => {
 
 
 // REMOVE A TIP ADDED ON USER PAGE
-router.patch("/user/:id/:tips-remove",protectRoute, (req, res, next) => {
+router.patch("/user/:id/:tips-remove", (req, res, next) => {
 
     userModel
         .findById(req.session.currentUser)
@@ -139,7 +139,7 @@ router.patch("/user/:id/:tips-remove",protectRoute, (req, res, next) => {
 })
 
 // UPDATE VISITED COUNTRY LIST
-router.patch("/country/:codename/visited",protectRoute, (req, res, next) => {
+router.patch("/country/:codename/visited", (req, res, next) => {
     const user = req.session.currentUser
     console.log('the useeeer', user);
     countryModel
@@ -156,7 +156,7 @@ router.patch("/country/:codename/visited",protectRoute, (req, res, next) => {
 })
 
 // REMOVE A COUNTRY FROM VISITED LIST
-router.patch("/country/:codename/visited-remove",protectRoute, (req, res, next) => {
+router.patch("/country/:codename/visited-remove", (req, res, next) => {
     const user = req.session.currentUser
     console.log('the useeeer', user);
     countryModel
@@ -174,7 +174,7 @@ router.patch("/country/:codename/visited-remove",protectRoute, (req, res, next) 
 
 
 // UPDATE WISHED COUNTRY LIST
-router.patch("/country/:codename/wishlist",protectRoute, (req, res, next) => {
+router.patch("/country/:codename/wishlist", (req, res, next) => {
     const user = req.session.currentUser
     console.log('the useeeer', user);
     countryModel
@@ -190,7 +190,7 @@ router.patch("/country/:codename/wishlist",protectRoute, (req, res, next) => {
 })
 
 // REMOVE A COUNTRY FROM WISHED LIST
-router.patch("/country/:codename/wishlist-remove",protectRoute, (req, res, next) => {
+router.patch("/country/:codename/wishlist-remove", (req, res, next) => {
     const user = req.session.currentUser
     console.log('the useeeer', user);
     countryModel
