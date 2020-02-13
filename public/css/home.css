@@ -16,7 +16,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 50%;
-    background-color: rgba(255,255,255, 0.5);
+    background-color: rgba(255,255,255, 0.8);
     width: 40%;
     flex-direction: column;
     padding: 20px;
@@ -70,6 +70,43 @@
 .home-page{
     width: 80%;
     height: 70%;
+}
+
+.home-search{
+    width: 60%;
+    background-color: rgba(255,255,255, 0.5);
+    border: 1px solid black;
+    border-radius: 2em;
+    margin-bottom: 1rem;
+    padding: 0 3rem;
+}
+
+.home-search label{
+    margin-right: 1rem;
+}
+
+.home-search input{
+    padding: 5px;
+    background: none;
+    border: none;
+    font-size: 1em;
+    outline: none;
+}
+
+.quick-search {
+    z-index: 5;
+}
+
+.country-results{
+    display: block;
+    line-height: 1.5em;
+    position: absolute;
+    width: 30%;
+    max-height: 100px;
+    overflow-y: scroll;
+    z-index: 5;
+    padding-left: 5em;
+    background-color: rgba(255,255,255, 0.5);
 }
 
 @media screen and (max-width: 638px){

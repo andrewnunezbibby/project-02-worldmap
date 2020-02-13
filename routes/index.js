@@ -7,7 +7,7 @@ const tipModel = require("../models/Tip")
 
 
 router.get(["/", "/home"], (req, res) => {
-    res.render("home");
+    res.render("home", { js: ["home"] });
 });
 
 router.get("/guide", (req, res) => {
@@ -20,7 +20,9 @@ router.get("/about", (req, res) => {
 
 router.get("/user", (req, res) => {
     userModel.findById(req.params.id)
-        .then(user => res.render("user", { user }))
+        .then(user => {
+            res.render("user", { user, js: ["user"] })
+        })
         .catch(dbError => { res.send(dbError) })
 });
 
@@ -40,7 +42,6 @@ router.get("/country/search/:countryname", (req, res) => {
     countryModel
         .find({ name: { $regex: regex } })
         .then(countryMatches => {
-            console.log("SEARCH" + countryMatches)
             res.send(countryMatches)
         }).catch(dbError => { res.send(dbError) })
 
@@ -54,7 +55,6 @@ router.get("/country/:codename", (req, res) => {
         .findOne({ codeName: { $regex: regex } })
         .then(country => {
             tipModel.find({ country: country._id }).populate("user").populate("country").then(tips => {
-                console.log("this is country", country)
                 res.render("country", { country, tips })
             }).catch(dbError => { res.send(dbError) })
 

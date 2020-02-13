@@ -10,7 +10,8 @@
         </div>
         <div class="user-main">
             <div class="user-main-visited">
-                <h3>Visited :</h3>
+                <h3>Visited</h3>
+                {{> searchBar}}
                 <ul>
                     {{#each currentUser.visited}}
                     <li><a href="/country/{{currentUser._id}}">{{currentUser.name}}</a></li>
@@ -18,7 +19,8 @@
                 </ul>
             </div>
             <div class="user-main-wishlist">
-                <h3>Wishlist :</h3>
+                <h3>Wishlist</h3>
+                {{> searchBar}}
                 <ul>
                     {{#each currentUser.wishlist}}
                     <li><a href="/country/{{currentUser._id}}">{{currentUser.name}}</a></li>
@@ -28,17 +30,20 @@
         </div>
     </div>
     <div class="tips-box">
-        <div class="tips-nav">
+        <div class="tips-nav flex">
             <div class="tips-nav-list">
-                <button class="tips-category active" type="button"><i class="fas fa-wine-glass-alt"></i> Bars</button>
-                <button class="tips-category" type="button"><i class="fas fa-utensils"></i> Restaurants</button>
-                <button class="tips-category" type="button"><i class="fas fa-leaf"></i> Parks</button>
-                <button class="tips-category" type="button"><i class="fas fa-eye"></i> Monuments</button>
-                <button class="tips-category" type="button"><i class="fas fa-shopping-bag"></i> Shopping</button>
-                <button class="tips-category" type="button"><i class="fas fa-info"></i> Info</button>
+                <button class="tips-category active" type="button"><i class="fas fa-wine-glass-alt"></i></button>
+                <button class="tips-category" type="button"><i class="fas fa-utensils"></i></button>
+                <button class="tips-category" type="button"><i class="fas fa-leaf"></i></button>
+                <button class="tips-category" type="button"><i class="fas fa-eye"></i></button>
+                <button class="tips-category" type="button"><i class="fas fa-shopping-bag"></i></button>
+                <button class="tips-category" type="button"><i class="fas fa-info"></i></button>
             </div>
         </div>
         <div class="tips-list">
+            {{#unless tips}}
+                <p>Nothing here yet. You can fix that in no time !</p>
+            {{/unless}}
             {{#each currentUser.tips}}
             <article class="tip-container">
                 <div class="tip-category">

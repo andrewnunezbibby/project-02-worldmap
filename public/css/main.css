@@ -88,11 +88,6 @@ button:focus {
     outline: none;
 }
 
-#country-results {
-    max-height: 100px;
-    overflow-y: auto;
+button i{
+    pointer-events: none;
 }
-
-/* #quick-search {
-    z-index: 1;
-} */

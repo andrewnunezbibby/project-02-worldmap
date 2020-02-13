@@ -89,6 +89,9 @@
             <button class="form-button" id="tip-form-button">Submit</button>
         </form>
         <div class="tips-list">
+            {{#unless tips}}
+                <p>Nothing here yet. You can fix that in no time !</p>
+            {{/unless}}
             {{#each tips}}
             <hr>
             <article class="tip-container flex">
