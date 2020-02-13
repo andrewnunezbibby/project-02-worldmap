@@ -105,11 +105,10 @@ router.post("/tips/add/:countryId/:codename", (req, res) => {
 router.patch("/country/:codename/visited", (req, res, next) => {
     const user = req.session.currentUser
     console.log('the useeeer', user);
-    const fakeUserId = "5e42b35e5429710afdceba3a"
     countryModel
         .findOne({ codeName: req.params.codename })
         .then(country => {
-            userModel.findByIdAndUpdate(fakeUserId, { $push: { visited: country._id } }, { new: true })
+            userModel.findByIdAndUpdate(user._id, { $push: { visited: country._id } }, { new: true })
                 .then(updatedUser => {
                     console.log(updatedUser)
                 })
@@ -122,11 +121,10 @@ router.patch("/country/:codename/visited", (req, res, next) => {
 router.patch("/country/:codename/wishlist", (req, res, next) => {
     const user = req.session.currentUser
     console.log('the useeeer', user);
-    const fakeUserId = "5e42b35e5429710afdceba3a"
     countryModel
         .findOne({ codeName: req.params.codename })
         .then(country => {
-            userModel.findByIdAndUpdate(fakeUserId, { $push: { wishlist: country._id } }, { new: true })
+            userModel.findByIdAndUpdate(user._id, { $push: { wishlist: country._id } }, { new: true })
                 .then(updatedUser => {
                     console.log(updatedUser)
                 })
