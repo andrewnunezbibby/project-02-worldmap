@@ -97,7 +97,7 @@
     z-index: 5;
 }
 
-#country-results{
+.country-results{
     display: block;
     line-height: 1.5em;
     position: absolute;

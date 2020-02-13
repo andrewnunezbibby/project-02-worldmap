@@ -1,8 +1,6 @@
 const container = document.querySelector(".tips-nav-list");
 const visitedButton = document.querySelector("#country-status-visited");
 const wishlistButton = document.querySelector("#country-status-wishlist");
-// const searchBar = document.querySelector("#search-bar");
-// const searchResultsList = document.querySelector("#country-results");
 
 // Filter on tips 
 
@@ -55,7 +53,5 @@ if (visitedButton)
     visitedButton.onclick = (evt) => handleVisited(evt);
 if (wishlistButton)
     wishlistButton.onclick = (evt) => handleVisited(evt);
-// if (searchBar)
-    // searchBar.oninput = (evt) => handleSearch(evt);
 
 
