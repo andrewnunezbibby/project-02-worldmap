@@ -1,10 +1,14 @@
 import SearchWidget from './searchWidget.js';
 
-const wishSearchWidget = new SearchWidget('/country/search', updateWishlist);
-const wishSearchBar = document.querySelectorAll(".search-bar")[0];
-
 const visSearchWidget = new SearchWidget('/country/search', updateVisited);
-const visSearchBar = document.querySelectorAll(".search-bar")[1];
+const visSearchBar = document.querySelectorAll(".search-bar")[0];
+
+const wishSearchWidget = new SearchWidget('/country/search', updateWishlist);
+const wishSearchBar = document.querySelectorAll(".search-bar")[1];
+
+visSearchBar.classList.add("visited-search");
+wishSearchBar.classList.add("wishlist-search");
+
 
 
 wishSearchBar.oninput = (evt) => wishSearchWidget.handleSearch(evt);
