@@ -16,7 +16,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 50%;
-    background-color: rgba(255,255,255, 0.6);
+    background-color: rgba(255,255,255, 0.8);
     width: 40%;
     flex-direction: column;
     padding: 20px;
@@ -67,10 +67,6 @@
     border-radius: 5px;
 }
 
-.home-page{
-    width: 80%;
-    height: 70%;
-}
 
 .home-search{
     width: 60%;
@@ -107,6 +103,10 @@
     z-index: 5;
     padding-left: 5em;
     background-color: rgba(255,255,255, 0.5);
+}
+
+#map{
+    max-height: 90%;
 }
 
 @media screen and (max-width: 638px){
