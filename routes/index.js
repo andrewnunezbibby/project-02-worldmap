@@ -127,18 +127,13 @@ router.post("/tips/add/:countryId/:codename", (req, res, next) => {
 
 
 // REMOVE A TIP ADDED ON USER PAGE
-router.patch("/user/:id/:tips-remove", (req, res, next) => {
-
-    userModel
-        .findById(req.session.currentUser)
-        .then(tips => {
-            userModel.findByIdAndUpdate(user._id, { $pull: tips._id }, { new: true })
-                .then(updatedUser => {
-                    console.log(updatedUser)
-                })
-                .catch(next)
+router.delete("/user/:tipId/remove-tip", (req, res, next) => {
+    tipModel
+        .findByIdAndDelete(req.params.tipId)
+        .then(deletedTip => {
+            res.send(deletedTip)
         })
-        .catch()
+        .catch(next)
 
 })
 

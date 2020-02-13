@@ -40,7 +40,7 @@
                 <p>Nothing here yet. You can fix that in no time !</p>
             {{/unless}}
             {{#each tips}}
-            <article class="tip-container">
+            <article id="{{this._id}}" class="tip-container">
                 <div class="tip-category">
                     {{this.category}}
                 </div>
@@ -50,7 +50,7 @@
                     <hr>
                     <p class="tip-body">{{this.body}}</p>
                     <span class="tip-address">{{this.address}}</span>
-                    <span class="tip-user">{{this.user.username}}</span>
+                    <span class="tip-user">{{this.user.username}}</span><button data-tip-id="{{this._id}}" class="btn-delete-tip">X</button>
                 </div>
             </article>
             {{/each}}

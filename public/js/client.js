@@ -17,7 +17,6 @@ if (btnAddTips) {
         form.classList.toggle("hidden")
     }
 }
-// Filter on tips 
 
 function handleVisited(evt) {
     const countryId = evt.target.getAttribute('data-country-id')
@@ -49,7 +48,28 @@ function appendTips(tips) {
 
 }
 
-function handleClickedTips(evt) {
+
+function setDeleteListeners() {
+    const deleteBtn = document.querySelectorAll(".btn-delete-tip");
+    deleteBtn.forEach(button => {
+        button.onclick = handleDeleteTips;
+    })
+}
+
+
+setDeleteListeners();
+function handleDeleteTips(evt) {
+
+    const tipId = evt.target.getAttribute('data-tip-id')
+    console.log(tipId)
+    axios.delete(`/user/${tipId}/remove-tip`, { withCredentials: true }).then(apiRes => {
+        document.getElementById(tipId).remove();
+    }).catch(err => {
+        console.log(err)
+    })
+}
+
+function handleFilteredTips(evt) {
 
     evt.target.classList.toggle("is-active");
     const clickedCatTip = container.querySelectorAll("button.is-active");
@@ -72,6 +92,7 @@ function handleClickedTips(evt) {
         .catch(apiErr => console.error(apiErr))
 }
 
+// handleDeleteTips.onclick(evt)
 
 if (container)
     container.onclick = handleClickedTips
