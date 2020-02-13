@@ -24,11 +24,11 @@ router.get("/user", (req, res) => {
     userModel.findById(req.session.currentUser)
         .populate("visited").populate("wishlist")
         .then(user => {
-            tipModel.find({user: user._id}).populate("user").
-            populate("country").then(tips => {
-                res.render("user", { user, tips, js: ["user"] })
-            })
-            .catch(dbError => { console.log(dbError) })
+            tipModel.find({ user: user._id }).populate("user").
+                populate("country").then(tips => {
+                    res.render("user", { user, tips, js: ["user"] })
+                })
+                .catch(dbError => { console.log(dbError) })
         })
         .catch(dbError => { console.log(dbError) })
 });
@@ -119,26 +119,21 @@ router.post("/tips/add/:countryId/:codename", (req, res, next) => {
     }).then(tip => {
         res.redirect("/country/" + req.params.codename)
     })
-    .catch(next)
-    .catch(err => {
-        console.log(err)
-    })
+        .catch(next)
+        .catch(err => {
+            console.log(err)
+        })
 })
 
 
 // REMOVE A TIP ADDED ON USER PAGE
-router.patch("/user/:id/:tips-remove", (req, res, next) => {
-
-    userModel
-        .findById(req.session.currentUser)
-        .then(tips => {
-            userModel.findByIdAndUpdate(user._id, { $pull: tips._id }, { new: true })
-                .then(updatedUser => {
-                    console.log(updatedUser)
-                })
-                .catch(next)
+router.delete("/user/:tipId/remove-tip", (req, res, next) => {
+    tipModel
+        .findByIdAndDelete(req.params.tipId)
+        .then(deletedTip => {
+            res.send(deletedTip)
         })
-        .catch()
+        .catch(next)
 
 })
 
