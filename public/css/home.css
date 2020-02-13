@@ -93,7 +93,7 @@
     outline: none;
 }
 
-#quick-search {
+.quick-search {
     z-index: 5;
 }
 
