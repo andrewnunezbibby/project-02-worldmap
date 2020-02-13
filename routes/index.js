@@ -80,7 +80,10 @@ router.get('/filter', protectRoute, (req, res, next) => {
     
     tipModel
         .find({ $and: [{ country }, { category: { $in: categoryArray } }] })
+        .populate("country")
+        .populate("user")
         .then(tips => {
+            console.log(tips)
             res.send(tips)
         })
 })

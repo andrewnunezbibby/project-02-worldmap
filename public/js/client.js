@@ -39,10 +39,10 @@ function appendTips(tips) {
             <div class="tip-head">
                 <h3>${tip.name}</h3> <p>(${tip.category})</p>
             </div>
-            <p class="tip-location">${tip.city}, ${tip.country}</p>
+            <p class="tip-location">${tip.city}, ${tip.country.name}</p>
             <p class="tip-body">"${tip.body}"</p>
             <p class="tip-address">${tip.address}</p>
-            <p class="tip-user">Added by : ${tip.user}</p>  
+            <p class="tip-user">Added by : ${tip.user.username}</p>  
         </article>`
         tipsList.innerHTML += markup;
     })
