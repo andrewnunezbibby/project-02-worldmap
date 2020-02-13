@@ -18,6 +18,8 @@ router.get("/about", (req, res) => {
     res.render("about");
 });
 
+
+// USER PAGE
 router.get("/user", (req, res) => {
     userModel.findById(req.session.currentUser)
         .populate("visited").populate("wishlist")
@@ -27,7 +29,9 @@ router.get("/user", (req, res) => {
         .catch(dbError => { res.send(dbError) })
 });
 
-router.get("/user/:id/:tips", (req, res) => {
+
+// USERS' TIPS
+router.get("/user/:id/:tips",protectRoute, (req, res, next) => {
 
     tipModel
         .find({ name: req.query.name })
@@ -35,9 +39,12 @@ router.get("/user/:id/:tips", (req, res) => {
             console.log(tips)
             res.render("user", { tips })
         })
+        .catch(next)
         .catch(dbError => { res.send(dbError) })
 });
 
+
+// SEARCHBAR FOR COUNTRIES
 router.get("/country/search/:countryname", (req, res) => {
     const regex = new RegExp(req.params.countryname, "i")
     countryModel
@@ -48,6 +55,7 @@ router.get("/country/search/:countryname", (req, res) => {
 
 })
 
+// COUNTRY PAGE
 router.get("/country/:codename", (req, res) => {
     const category = req.query.category
     console.log("ici", req.params)
@@ -64,17 +72,19 @@ router.get("/country/:codename", (req, res) => {
     console.log(req.params.codename);
 });
 
-
-router.get("/country/:id/:tips", (req, res) => {
+// ALL THE TIPS
+router.get("/country/:id/:tips",protectRoute, (req, res) => {
     tipModel
         .find({ name: req.query.name })
         .then(tips => {
             console.log(tips)
             res.render("country", { tips })
         })
+        .catch(next)
         .catch(dbError => { res.send(dbError) })
 });
 
+// FILTER TIPS BY CATEGORIES
 router.get('/filter', protectRoute, (req, res, next) => {
     const categoryArray = Array.isArray(req.query.filter) ? req.query.filter : [req.query.filter];
     const country = req.query.country;
@@ -87,9 +97,12 @@ router.get('/filter', protectRoute, (req, res, next) => {
             console.log(tips)
             res.send(tips)
         })
+        .catch(next)
+        .catch(dbError => { res.send(dbError) })
 })
 
-router.post("/tips/add/:countryId/:codename", (req, res) => {
+// ADD NEW TIP
+router.post("/tips/add/:countryId/:codename",protectRoute, (req, res, next) => {
     console.log(req.body)
     tipModel.create({
         name: req.body.name,
@@ -101,12 +114,32 @@ router.post("/tips/add/:countryId/:codename", (req, res) => {
         country: req.params.countryId
     }).then(tip => {
         res.redirect("/country/" + req.params.codename)
-    }).catch(err => {
+    })
+    .catch(next)
+    .catch(err => {
         console.log(err)
     })
 })
 
-router.patch("/country/:codename/visited", (req, res, next) => {
+
+// REMOVE A TIP ADDED ON USER PAGE
+router.patch("/user/:id/:tips-remove",protectRoute, (req, res, next) => {
+
+    userModel
+        .findById(req.session.currentUser)
+        .then(tips => {
+            userModel.findByIdAndUpdate(user._id, { $pull: tips._id }, { new: true })
+                .then(updatedUser => {
+                    console.log(updatedUser)
+                })
+                .catch(next)
+        })
+        .catch()
+
+})
+
+// UPDATE VISITED COUNTRY LIST
+router.patch("/country/:codename/visited",protectRoute, (req, res, next) => {
     const user = req.session.currentUser
     console.log('the useeeer', user);
     countryModel
@@ -122,13 +155,48 @@ router.patch("/country/:codename/visited", (req, res, next) => {
 
 })
 
-router.patch("/country/:codename/wishlist", (req, res, next) => {
+// REMOVE A COUNTRY FROM VISITED LIST
+router.patch("/country/:codename/visited-remove",protectRoute, (req, res, next) => {
+    const user = req.session.currentUser
+    console.log('the useeeer', user);
+    countryModel
+        .findOne({ codeName: req.params.codename })
+        .then(country => {
+            userModel.findByIdAndUpdate(user._id, { $pull: { visited: country._id } }, { new: true })
+                .then(updatedUser => {
+                    console.log(updatedUser)
+                })
+                .catch(next)
+        })
+        .catch()
+
+})
+
+
+// UPDATE WISHED COUNTRY LIST
+router.patch("/country/:codename/wishlist",protectRoute, (req, res, next) => {
     const user = req.session.currentUser
     console.log('the useeeer', user);
     countryModel
         .findOne({ codeName: req.params.codename })
         .then(country => {
             userModel.findByIdAndUpdate(user._id, { $push: { wishlist: country._id } }, { new: true })
+                .then(updatedUser => {
+                    console.log(updatedUser)
+                })
+                .catch(next)
+        })
+        .catch()
+})
+
+// REMOVE A COUNTRY FROM WISHED LIST
+router.patch("/country/:codename/wishlist-remove",protectRoute, (req, res, next) => {
+    const user = req.session.currentUser
+    console.log('the useeeer', user);
+    countryModel
+        .findOne({ codeName: req.params.codename })
+        .then(country => {
+            userModel.findByIdAndUpdate(user._id, { $pull: { wishlist: country._id } }, { new: true })
                 .then(updatedUser => {
                     console.log(updatedUser)
                 })
