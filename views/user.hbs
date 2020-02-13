@@ -12,7 +12,7 @@
                 <div class="user-search">
                     {{> searchBar}}
                 </div>
-                <ul>
+                <ul id="user-visited-list">
                     {{#each user.visited}}
                     <li class="visited-item" id="user-list-visited"><a href="/country/{{this.codeName}}">{{this.name}}</a></li>
                     {{/each}}
@@ -23,7 +23,7 @@
                 <div class="user-search">
                     {{> searchBar}}
                 </div>
-                <ul>
+                <ul id="user-wishlist">
                     {{#each user.wishlist}}
                     <li class="wishlist-item" id="user-list-wishlist"><a href="/country/{{this.codeName}}">{{this.name}}</a></li>
                     {{/each}}
@@ -40,15 +40,18 @@
                 <p>Nothing here yet. You can fix that in no time !</p>
             {{/unless}}
             {{#each tips}}
-            <hr>
-            <article class="tip-container flex">
-                <div class="tip-head">
-                    <h3>{{this.name}}</h3> <p>({{this.category}})</p>
+            <article id="{{this._id}}" class="tip-container">
+                <div class="tip-category">
+                    {{this.category}}
                 </div>
-                <p class="tip-location">{{this.city}}, {{this.country.name}}</p>
-                <p class="tip-body">"{{this.body}}"</p>
-                <p class="tip-address">{{this.address}}</p>
-                <p class="tip-user">Added by : {{this.user.username}}</p>  
+                <div class="tip-content">
+                    <h3>{{this.name}}</h3>
+                    <span class="tip-location">{{this.city}}, {{this.country.name}}</span>
+                    <hr>
+                    <p class="tip-body">{{this.body}}</p>
+                    <span class="tip-address">{{this.address}}</span>
+                    <span class="tip-user">{{this.user.username}}</span><button data-tip-id="{{this._id}}" class="btn-delete-tip">X</button>
+                </div>
             </article>
             {{/each}}
         </div>

@@ -26,16 +26,12 @@
     text-align: center;
 }
 
-@media screen and (max-width: 1000px){
+@media screen and (max-width: 900px){
     .guide-article{
         flex-direction: column;
     }
 
     .guide-text{
         width: 100%;
-    }
-
-    .guide-img{
-        width: 90%;
     }
 }
