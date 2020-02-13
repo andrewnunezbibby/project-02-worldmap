@@ -39,18 +39,18 @@
             {{#unless tips}}
                 <p>Nothing here yet. You can fix that in no time !</p>
             {{/unless}}
-            {{#each currentUser.tips}}
+            {{#each tips}}
             <article class="tip-container">
                 <div class="tip-category">
                     {{this.category}}
                 </div>
                 <div class="tip-content">
                     <h3>{{this.name}}</h3>
-                    <span class="tip-location">{{this.city}}, {{this.country}}</span>
+                    <span class="tip-location">{{this.city}}, {{this.country.name}}</span>
                     <hr>
                     <p class="tip-body">{{this.body}}</p>
                     <span class="tip-address">{{this.address}}</span>
-                    <span class="tip-user">{{this.user}}</span>
+                    <span class="tip-user">{{this.user.username}}</span>
                 </div>
             </article>
             {{/each}}

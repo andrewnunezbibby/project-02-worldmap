@@ -24,9 +24,13 @@ router.get("/user", (req, res) => {
     userModel.findById(req.session.currentUser)
         .populate("visited").populate("wishlist")
         .then(user => {
-            res.render("user", { user, js: ["user"] })
+            tipModel.find({user: user._id}).populate("user").
+            populate("country").then(tips => {
+                res.render("user", { user, tips, js: ["user"] })
+            })
+            .catch(dbError => { console.log(dbError) })
         })
-        .catch(dbError => { res.send(dbError) })
+        .catch(dbError => { console.log(dbError) })
 });
 
 
