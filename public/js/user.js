@@ -15,13 +15,11 @@ visSearchBar.oninput = (evt) => visSearchWidget.handleSearch(evt);
 
 function updateWishlist(country) {
     let code = country.codeName;
-    console.log("CLICKED", code);
     let targetCountry = document.getElementById(`sr_${code}`)
     if (targetCountry) {
-        console.log(targetCountry)
         targetCountry.onclick = () => {
             axios.patch(`/country/${code}/wishlist`).then(user => {
-                showUpdatedWishList(user.data.visited)
+                showUpdatedWishList(user.data.wishlist)
             })
         }
 
@@ -29,23 +27,21 @@ function updateWishlist(country) {
 }
 
 function showUpdatedWishList(searchResults) {
-    const VisitedList = document.querySelector("#user-visited-list");
-    VisitedList.innerHTML = "";
+    const userWishlist = document.querySelector("#user-wishlist");
+    userWishlist.innerHTML = "";
     searchResults.forEach(result => {
         const html = `<li class="wishlist-item" id="user-list-wishlist"><a href="/country/${result.codeName}">${result.name}</a></li>`
         const tpl = document.createElement("template");
         tpl.innerHTML = html;
         const node = tpl.content.childNodes[0];
-        VisitedList.appendChild(node);
+        userWishlist.appendChild(node);
     })
 }
 
 function updateVisited(country) {
     let code = country.codeName;
-    console.log("CLICKED", code);
     let targetCountry = document.getElementById(`sr_${code}`)
     if (targetCountry) {
-        console.log(targetCountry)
         targetCountry.onclick = () => {
             console.log("Editing User" + code)
             axios.patch(`/country/${code}/visited`).then(user => {
@@ -57,14 +53,14 @@ function updateVisited(country) {
 }
 
 function showUpdatedVisitedList(searchResults) {
-    const VisitedList = document.querySelector("#user-visited-list");
-    VisitedList.innerHTML = "";
+    const userVisitedList = document.querySelector("#user-visited-list");
+    userVisitedList.innerHTML = "";
     searchResults.forEach(result => {
-        const html = `<li class="wishlist-item" id="user-list-wishlist"><a href="/country/${result.codeName}">${result.name}</a></li>`
+        const html = `<li class="visited-item" id="user-list-visited"><a href="/country/${result.codeName}">${result.name}</a></li>`
         const tpl = document.createElement("template");
         tpl.innerHTML = html;
         const node = tpl.content.childNodes[0];
-        VisitedList.appendChild(node);
+        userVisitedList.appendChild(node);
     })
 }
 

@@ -1,8 +1,8 @@
 
 export default class SearchWidget {
-    constructor(callUrl, cb) {
+    constructor(callUrl, callback) {
         this.callUrl = callUrl;
-        this.cb = cb;
+        this.callback = callback;
     }
 
     handleSearch(evt) {
@@ -25,7 +25,7 @@ export default class SearchWidget {
             const tpl = document.createElement("template");
             tpl.innerHTML = markup;
             const node = tpl.content.childNodes[0];
-            node.onclick = () => this.cb(result)
+            node.onclick = () => this.callback(result)
             searchResultsList.appendChild(node);
 
         })

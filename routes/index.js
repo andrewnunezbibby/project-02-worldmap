@@ -40,7 +40,6 @@ router.get("/user/:id/:tips", (req, res, next) => {
     tipModel
         .find({ name: req.query.name })
         .then(tips => {
-            console.log(tips)
             res.render("user", { tips })
         })
         .catch(next)
@@ -62,7 +61,6 @@ router.get("/country/search/:countryname", (req, res) => {
 // COUNTRY PAGE
 router.get("/country/:codename", (req, res) => {
     const category = req.query.category
-    console.log("ici", req.params)
     const regex = new RegExp(req.params.codename, "i")
     countryModel
         .findOne({ codeName: { $regex: regex } })
@@ -73,7 +71,6 @@ router.get("/country/:codename", (req, res) => {
 
         })
         .catch(dbError => { res.send(dbError) })
-    console.log(req.params.codename);
 });
 
 // ALL THE TIPS
@@ -81,7 +78,6 @@ router.get("/country/:id/:tips", (req, res) => {
     tipModel
         .find({ name: req.query.name })
         .then(tips => {
-            console.log(tips)
             res.render("country", { tips })
         })
         .catch(next)
@@ -98,7 +94,6 @@ router.get('/filter', (req, res, next) => {
         .populate("country")
         .populate("user")
         .then(tips => {
-            console.log(tips)
             res.send(tips)
         })
         .catch(next)
@@ -107,7 +102,6 @@ router.get('/filter', (req, res, next) => {
 
 // ADD NEW TIP
 router.post("/tips/add/:countryId/:codename", (req, res, next) => {
-    console.log(req.body)
     tipModel.create({
         name: req.body.name,
         city: req.body.city,
@@ -140,13 +134,11 @@ router.delete("/user/:tipId/remove-tip", (req, res, next) => {
 // UPDATE VISITED COUNTRY LIST
 router.patch("/country/:codename/visited", (req, res, next) => {
     const user = req.session.currentUser
-    console.log('the useeeer', user);
     countryModel
         .findOne({ codeName: req.params.codename })
         .then(country => {
             userModel.findByIdAndUpdate(user._id, { $push: { visited: country._id } }, { new: true }).populate("visited")
                 .then(updatedUser => {
-                    console.log("YOU're WELCOME", updatedUser)
                     res.send(updatedUser)
                 })
                 .catch(next)
@@ -158,7 +150,6 @@ router.patch("/country/:codename/visited", (req, res, next) => {
 // REMOVE A COUNTRY FROM VISITED LIST
 router.patch("/country/:codename/visited-remove", (req, res, next) => {
     const user = req.session.currentUser
-    console.log('the useeeer', user);
     countryModel
         .findOne({ codeName: req.params.codename })
         .then(country => {
@@ -176,11 +167,11 @@ router.patch("/country/:codename/visited-remove", (req, res, next) => {
 // UPDATE WISHED COUNTRY LIST
 router.patch("/country/:codename/wishlist", (req, res, next) => {
     const user = req.session.currentUser
-    console.log('the useeeer', user);
     countryModel
         .findOne({ codeName: req.params.codename })
         .then(country => {
             userModel.findByIdAndUpdate(user._id, { $push: { wishlist: country._id } }, { new: true })
+                .populate("wishlist")
                 .then(updatedUser => {
                     res.send(updatedUser)
                 })
@@ -192,7 +183,6 @@ router.patch("/country/:codename/wishlist", (req, res, next) => {
 // REMOVE A COUNTRY FROM WISHED LIST
 router.patch("/country/:codename/wishlist-remove", (req, res, next) => {
     const user = req.session.currentUser
-    console.log('the useeeer', user);
     countryModel
         .findOne({ codeName: req.params.codename })
         .then(country => {

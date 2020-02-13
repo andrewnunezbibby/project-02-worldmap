@@ -21,7 +21,6 @@ if (btnAddTips) {
 function handleVisited(evt) {
     const countryId = evt.target.getAttribute('data-country-id')
     axios.patch(`/country/${countryId}/visited`).then()
-    console.log("======>" + countryId)
 }
 
 
@@ -61,7 +60,6 @@ setDeleteListeners();
 function handleDeleteTips(evt) {
 
     const tipId = evt.target.getAttribute('data-tip-id')
-    console.log(tipId)
     axios.delete(`/user/${tipId}/remove-tip`, { withCredentials: true }).then(apiRes => {
         document.getElementById(tipId).remove();
     }).catch(err => {
@@ -75,15 +73,12 @@ function handleFilteredTips(evt) {
     const clickedCatTip = container.querySelectorAll("button.is-active");
     const countryId = document.querySelector('.tips-nav-list').id;
     var query = "?country=" + countryId + '&';
-    // console.log('1', clickedCatTip)
 
     clickedCatTip.forEach((btn, i) => {
-        console.log(btn.value)
         query += "filter=" + btn.value + (i < clickedCatTip.length - 1 ? "&" : "")
     })
 
     // query = query.replace('false', '')
-    console.log('query', query)
     axios.get("/filter" + query)
         .then(apiRes => {
             const newTips = apiRes.data
@@ -100,6 +95,3 @@ if (visitedButton)
     visitedButton.onclick = (evt) => handleVisited(evt);
 if (wishlistButton)
     wishlistButton.onclick = (evt) => handleVisited(evt);
-
-
-
