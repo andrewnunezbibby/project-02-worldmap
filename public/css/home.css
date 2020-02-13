@@ -99,6 +99,7 @@
 
 #country-results{
     display: block;
+    line-height: 1.5em;
     position: absolute;
     width: 30%;
     max-height: 100px;
