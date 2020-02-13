@@ -24,11 +24,11 @@ router.get("/user", (req, res) => {
     userModel.findById(req.session.currentUser)
         .populate("visited").populate("wishlist")
         .then(user => {
-            tipModel.find({user: user._id}).populate("user").
-            populate("country").then(tips => {
-                res.render("user", { user, tips, js: ["user"] })
-            })
-            .catch(dbError => { console.log(dbError) })
+            tipModel.find({ user: user._id }).populate("user").
+                populate("country").then(tips => {
+                    res.render("user", { user, tips, js: ["user"] })
+                })
+                .catch(dbError => { console.log(dbError) })
         })
         .catch(dbError => { console.log(dbError) })
 });
@@ -119,10 +119,10 @@ router.post("/tips/add/:countryId/:codename", (req, res, next) => {
     }).then(tip => {
         res.redirect("/country/" + req.params.codename)
     })
-    .catch(next)
-    .catch(err => {
-        console.log(err)
-    })
+        .catch(next)
+        .catch(err => {
+            console.log(err)
+        })
 })
 
 
@@ -149,13 +149,14 @@ router.patch("/country/:codename/visited", (req, res, next) => {
     countryModel
         .findOne({ codeName: req.params.codename })
         .then(country => {
-            userModel.findByIdAndUpdate(user._id, { $push: { visited: country._id } }, { new: true })
+            userModel.findByIdAndUpdate(user._id, { $push: { visited: country._id } }, { new: true }).populate("visited")
                 .then(updatedUser => {
-                    console.log(updatedUser)
+                    console.log("YOU're WELCOME", updatedUser)
+                    res.send(updatedUser)
                 })
                 .catch(next)
         })
-        .catch()
+        .catch((err) => console.log(err))
 
 })
 
@@ -168,7 +169,7 @@ router.patch("/country/:codename/visited-remove", (req, res, next) => {
         .then(country => {
             userModel.findByIdAndUpdate(user._id, { $pull: { visited: country._id } }, { new: true })
                 .then(updatedUser => {
-                    console.log(updatedUser)
+                    res.send(updatedUser)
                 })
                 .catch(next)
         })
@@ -186,7 +187,7 @@ router.patch("/country/:codename/wishlist", (req, res, next) => {
         .then(country => {
             userModel.findByIdAndUpdate(user._id, { $push: { wishlist: country._id } }, { new: true })
                 .then(updatedUser => {
-                    console.log(updatedUser)
+                    res.send(updatedUser)
                 })
                 .catch(next)
         })

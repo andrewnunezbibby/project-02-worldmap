@@ -12,7 +12,7 @@
                 <div class="user-search">
                     {{> searchBar}}
                 </div>
-                <ul>
+                <ul id="user-visited-list">
                     {{#each user.visited}}
                     <li class="visited-item" id="user-list-visited"><a href="/country/{{this.codeName}}">{{this.name}}</a></li>
                     {{/each}}
@@ -23,7 +23,7 @@
                 <div class="user-search">
                     {{> searchBar}}
                 </div>
-                <ul>
+                <ul id="user-wishlist">
                     {{#each user.wishlist}}
                     <li class="wishlist-item" id="user-list-wishlist"><a href="/country/{{this.codeName}}">{{this.name}}</a></li>
                     {{/each}}
