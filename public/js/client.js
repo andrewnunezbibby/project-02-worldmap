@@ -4,6 +4,7 @@ const wishlistButton = document.querySelector("#country-status-wishlist");
 const searchBar = document.querySelector("#search-bar");
 const searchResultsList = document.querySelector("#country-results");
 const tipsList = document.querySelector('.tips-list');
+const countryId = window.location.href.slice(-2)
 let userVisitedCountries = []
 let userWishlistCountries = []
 
@@ -13,21 +14,17 @@ function getUserCountries() {
     axios.get(`/user-countries`)
         .then(user => {
             userVisitedCountries.push(...user.data.visited.map(country => country.codeName))
-            userWishlistCountries.push(user.data.wishlist.map(country => country.codeName))
-            showCountries();
+            userWishlistCountries.push(...user.data.wishlist.map(country => country.codeName))
         })
 }
 
-function showCountries() {
-    // console.log(userVisitedCountries)
-    // console.log(userWishlistCountries)
+getUserCountries()
+window.onload = function () {
+    toggleVisitedButton()
+    toggleWishlistButton()
 }
 
-getUserCountries()
-window.onload = toggleVisitedButton
-
 // Filter on tips 
-
 const btnAddTips = document.querySelector(".tips-nav-add button")
 // function display
 
@@ -44,7 +41,6 @@ function toggleVisitedButton() {
     console.log(countryId)
 
     if (userVisitedCountries.indexOf(countryId) > -1) {
-        console.log("country is here")
         visitedButton.classList.add("item-visited")
     }
 }
@@ -74,10 +70,38 @@ function handleVisited(evt) {
     }
 }
 
+function toggleWishlistButton() {
+    const countryId = window.location.href.slice(-2)
+    console.log(userWishlistCountries)
+
+    if (userWishlistCountries.indexOf(countryId) > -1) {
+        console.log("country is here")
+        wishlistButton.classList.add("item-wishlist")
+    }
+}
+
 
 function handleWished(evt) {
-    const countryId = evt.target.getAttribute('data-country-id')
-    axios.patch(`/country/${countryId}/wishlist`).then()
+    if (userWishlistCountries.indexOf(countryId) === -1) {
+        console.log("here adding")
+        axios.patch(`/country/${countryId}/wishlist`).then(
+            response => {
+                wishlistButton.classList.toggle("item-wishlist")
+                getUserCountries()
+            }
+        ).catch(err => console.log(err))
+        console.log(userWishlistCountries);
+    }
+    if (userWishlistCountries.indexOf(countryId) > -1) {
+        console.log("here removing")
+        axios.patch(`/country/${countryId}/wishlist-remove`).then(
+            response => {
+                wishlistButton.classList.toggle("item-wishlist")
+                getUserCountries()
+            }
+        ).catch(err => console.log(err))
+        console.log(userWishlistCountries);
+    }
 }
 
 function appendTips(tips) {
@@ -145,4 +169,4 @@ if (container)
 if (visitedButton)
     visitedButton.onclick = (evt) => handleVisited(evt);
 if (wishlistButton)
-    wishlistButton.onclick = (evt) => handleVisited(evt);
+    wishlistButton.onclick = (evt) => handleWished(evt);

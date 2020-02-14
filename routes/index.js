@@ -68,7 +68,6 @@ router.get("/country/:codename", (req, res) => {
             tipModel.find({ country: country._id }).populate("user").populate("country").then(tips => {
                 res.render("country", { country, tips })
             }).catch(dbError => { res.send(dbError) })
-
         })
         .catch(dbError => { res.send(dbError) })
 });
@@ -197,7 +196,7 @@ router.patch("/country/:codename/wishlist-remove", (req, res, next) => {
         .then(country => {
             userModel.findByIdAndUpdate(user._id, { $pull: { wishlist: country._id } }, { new: true })
                 .then(updatedUser => {
-                    console.log(updatedUser)
+                    res.send(updatedUser)
                 })
                 .catch(next)
         })
