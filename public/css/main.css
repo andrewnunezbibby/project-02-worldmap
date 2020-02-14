@@ -89,11 +89,3 @@ button:focus {
 button i{
     pointer-events: none;
 }
-
-.visited-item{
-    color: purple
-}
-
-.wishlist-item{
-    color: violet;
-}

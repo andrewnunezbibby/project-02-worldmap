@@ -69,6 +69,7 @@
 }
 
 #user-list-visited, #user-list-wishlist{
+    font-size: 1em;
+    line-height: 1.5em;
     list-style-type: disc;
-    font-size: 0.8em;
 }

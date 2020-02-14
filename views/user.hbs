@@ -40,18 +40,13 @@
                 <p>Nothing here yet. You can fix that in no time !</p>
             {{/unless}}
             {{#each tips}}
+            <hr>
             <article id="{{this._id}}" class="tip-container">
-                <div class="tip-category">
-                    {{this.category}}
-                </div>
-                <div class="tip-content">
-                    <h3>{{this.name}}</h3>
-                    <span class="tip-location">{{this.city}}, {{this.country.name}}</span>
-                    <hr>
-                    <p class="tip-body">{{this.body}}</p>
-                    <span class="tip-address">{{this.address}}</span>
-                    <span class="tip-user">{{this.user.username}}</span><button data-tip-id="{{this._id}}" class="btn-delete-tip">X</button>
-                </div>
+                <h3>{{this.name}}</h3><p>({{this.category}})</p>
+                <span class="tip-location">{{this.city}}, {{this.country.name}}</span>
+                <p class="tip-body">{{this.body}}</p>
+                <span class="tip-address">{{this.address}}</span>
+                <span class="tip-user">{{this.user.username}}</span><button data-tip-id="{{this._id}}" class="btn-delete-tip">X</button>
             </article>
             {{/each}}
         </div>
