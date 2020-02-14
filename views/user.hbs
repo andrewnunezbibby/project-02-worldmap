@@ -40,8 +40,8 @@
                 <p>Nothing here yet. You can fix that in no time !</p>
             {{/unless}}
             {{#each tips}}
-            <hr>
             <article id="{{this._id}}" class="tip-container">
+                <hr>
                 <h3>{{this.name}}</h3><p>({{this.category}})</p>
                 <span class="tip-location">{{this.city}}, {{this.country.name}}</span>
                 <p class="tip-body">{{this.body}}</p>
