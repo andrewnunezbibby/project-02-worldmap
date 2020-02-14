@@ -13,7 +13,7 @@
     border: 1px solid black;
     border-radius: 8px;
     margin-bottom: 5px;
-    
+
 }
 
 
@@ -51,7 +51,7 @@ hr{
     padding: 1.5rem 3rem;
 }
 
-.tip-head *{
+.tip-head-country *{
     display: inline-block;
     margin-bottom: 0;
 }
@@ -122,6 +122,26 @@ hr{
 
 textarea{
     resize: vertical;
+}
+
+.tip-head{
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.tip-head-user *{
+    display: inline-block;
+    margin-bottom: 0;
+    align-items: center;
+}
+
+.tip-head button{
+    background: none;
+    border: 1px solid black;
+    padding: 5px;
+    width: 3em;
+    border-radius: 5px;
+    margin-right: 1em;
 }
 
 @media screen and (max-width: 1250px){
