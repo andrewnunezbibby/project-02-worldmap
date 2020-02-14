@@ -42,12 +42,16 @@
             {{#each tips}}
             <article id="{{this._id}}" class="tip-container">
                 <hr>
-                <h3>{{this.name}}</h3><p>({{this.category}})</p>
+                <div class="tip-head flex">
+                    <div class="tip-head-user">
+                        <h3>{{this.name}}</h3> <p>({{this.category}})</p>
+                    </div>
+                    <button data-tip-id="{{this._id}}" class="btn-delete-tip">X</button>
+                </div>
                 <span class="tip-location">{{this.city}}, {{this.country.name}}</span>
                 <p class="tip-body">{{this.body}}</p>
-                <span class="tip-address">{{this.address}}</span>
-                <span class="tip-user">{{this.user.username}}</span><button data-tip-id="{{this._id}}" class="btn-delete-tip">X</button>
-            </article>
+                <p class="tip-address">{{this.address}}</p>
+                <p class="tip-user">{{this.user.username}}</p>            </article>
             {{/each}}
         </div>
     </div>
