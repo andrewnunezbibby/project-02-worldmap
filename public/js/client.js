@@ -24,6 +24,7 @@ function showCountries() {
 }
 
 getUserCountries()
+window.onload = toggleVisitedButton
 
 // Filter on tips 
 
@@ -39,10 +40,11 @@ if (btnAddTips) {
 }
 
 function toggleVisitedButton() {
-    if (userVisitedCountries.indexOf(countryId) === -1) {
-        visitedButton.classList.remove("item-visited")
-    }
+    const countryId = window.location.href.slice(-2)
+    console.log(countryId)
+
     if (userVisitedCountries.indexOf(countryId) > -1) {
+        console.log("country is here")
         visitedButton.classList.add("item-visited")
     }
 }
