@@ -35,16 +35,16 @@ router.get("/user", (req, res) => {
 
 
 // USERS' TIPS
-router.get("/user/:id/:tips", (req, res, next) => {
+// router.get("/user/:id/:tips", (req, res, next) => {
 
-    tipModel
-        .find({ name: req.query.name })
-        .then(tips => {
-            res.render("user", { tips })
-        })
-        .catch(next)
-        .catch(dbError => { res.send(dbError) })
-});
+//     tipModel
+//         .find({ name: req.query.name })
+//         .then(tips => {
+//             res.render("user", { tips })
+//         })
+//         .catch(next)
+//         .catch(dbError => { res.send(dbError) })
+// });
 
 
 // SEARCHBAR FOR COUNTRIES
