@@ -88,9 +88,9 @@ function handleWished(evt) {
             response => {
                 wishlistButton.classList.toggle("item-wishlist")
                 getUserCountries()
+                console.log(userWishlistCountries);
             }
         ).catch(err => console.log(err))
-        console.log(userWishlistCountries);
     }
     if (userWishlistCountries.indexOf(countryId) > -1) {
         console.log("here removing")
@@ -98,9 +98,9 @@ function handleWished(evt) {
             response => {
                 wishlistButton.classList.toggle("item-wishlist")
                 getUserCountries()
+                console.log(userWishlistCountries);
             }
         ).catch(err => console.log(err))
-        console.log(userWishlistCountries);
     }
 }
 
