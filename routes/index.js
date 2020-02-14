@@ -24,8 +24,8 @@ router.get("/user", (req, res) => {
     userModel.findById(req.session.currentUser)
         .populate("visited").populate("wishlist")
         .then(user => {
-            tipModel.find({ user: user._id }).populate("user").
-                populate("country").then(tips => {
+            tipModel.find({ user: user._id }).populate("user")
+                .populate("country").then(tips => {
                     res.render("user", { user, tips, js: ["user"] })
                 })
                 .catch(dbError => { console.log(dbError) })
@@ -58,7 +58,7 @@ router.get("/country/search/:countryname", (req, res) => {
 
 })
 
-// COUNTRY PAGE
+// COUNTRY ROUTES
 router.get("/country/:codename", (req, res) => {
     const category = req.query.category
     const regex = new RegExp(req.params.codename, "i")
@@ -72,6 +72,14 @@ router.get("/country/:codename", (req, res) => {
         })
         .catch(dbError => { res.send(dbError) })
 });
+
+router.get("/user-countries", (req, res) => {
+    // const user = req.session.currentUser
+    userModel.findById(req.session.currentUser._id)
+        .populate("visited").populate("wishlist")
+        .then(user => res.send(user))
+        .catch(dbError => { console.log(dbError) })
+})
 
 // ALL THE TIPS
 router.get("/country/:id/:tips", (req, res) => {
@@ -156,6 +164,7 @@ router.patch("/country/:codename/visited-remove", (req, res, next) => {
             userModel.findByIdAndUpdate(user._id, { $pull: { visited: country._id } }, { new: true })
                 .then(updatedUser => {
                     res.send(updatedUser)
+                    console.log("REMOVING", updatedUser)
                 })
                 .catch(next)
         })

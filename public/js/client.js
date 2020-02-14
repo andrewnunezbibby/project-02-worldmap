@@ -4,6 +4,26 @@ const wishlistButton = document.querySelector("#country-status-wishlist");
 const searchBar = document.querySelector("#search-bar");
 const searchResultsList = document.querySelector("#country-results");
 const tipsList = document.querySelector('.tips-list');
+let userVisitedCountries = []
+let userWishlistCountries = []
+
+function getUserCountries() {
+    userVisitedCountries = []
+    userWishlistCountries = []
+    axios.get(`/user-countries`)
+        .then(user => {
+            userVisitedCountries.push(...user.data.visited.map(country => country.codeName))
+            userWishlistCountries.push(user.data.wishlist.map(country => country.codeName))
+            showCountries();
+        })
+}
+
+function showCountries() {
+    // console.log(userVisitedCountries)
+    // console.log(userWishlistCountries)
+}
+
+getUserCountries()
 
 // Filter on tips 
 
@@ -18,9 +38,38 @@ if (btnAddTips) {
     }
 }
 
+function toggleVisitedButton() {
+    if (userVisitedCountries.indexOf(countryId) === -1) {
+        visitedButton.classList.remove("item-visited")
+    }
+    if (userVisitedCountries.indexOf(countryId) > -1) {
+        visitedButton.classList.toggle("item-visited")
+    }
+}
+
 function handleVisited(evt) {
     const countryId = evt.target.getAttribute('data-country-id')
-    axios.patch(`/country/${countryId}/visited`).then()
+
+    if (userVisitedCountries.indexOf(countryId) === -1) {
+        console.log("here adding")
+        axios.patch(`/country/${countryId}/visited`).then(
+            response => {
+                visitedButton.classList.toggle("item-visited")
+                getUserCountries()
+            }
+        ).catch(err => console.log(err))
+        console.log(userVisitedCountries);
+    }
+    if (userVisitedCountries.indexOf(countryId) > -1) {
+        console.log("here adding")
+        axios.patch(`/country/${countryId}/visited-remove`).then(
+            response => {
+                visitedButton.classList.toggle("item-visited")
+                getUserCountries()
+            }
+        ).catch(err => console.log(err))
+        console.log(userVisitedCountries);
+    }
 }
 
 
@@ -90,7 +139,7 @@ function handleFilteredTips(evt) {
 // handleDeleteTips.onclick(evt)
 
 if (container)
-    container.onclick = handleClickedTips
+    container.onclick = handleFilteredTips
 if (visitedButton)
     visitedButton.onclick = (evt) => handleVisited(evt);
 if (wishlistButton)
