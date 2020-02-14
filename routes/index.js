@@ -35,16 +35,16 @@ router.get("/user", (req, res) => {
 
 
 // USERS' TIPS
-router.get("/user/:id/:tips", (req, res, next) => {
+// router.get("/user/:id/:tips", (req, res, next) => {
 
-    tipModel
-        .find({ name: req.query.name })
-        .then(tips => {
-            res.render("user", { tips })
-        })
-        .catch(next)
-        .catch(dbError => { res.send(dbError) })
-});
+//     tipModel
+//         .find({ name: req.query.name })
+//         .then(tips => {
+//             res.render("user", { tips })
+//         })
+//         .catch(next)
+//         .catch(dbError => { res.send(dbError) })
+// });
 
 
 // SEARCHBAR FOR COUNTRIES
@@ -95,9 +95,12 @@ router.get("/country/:id/:tips", (req, res) => {
 router.get('/filter', (req, res, next) => {
     const categoryArray = Array.isArray(req.query.filter) ? req.query.filter : [req.query.filter];
     const country = req.query.country;
-
+    const query = {};
+    if(country) query.country = req.query.country;
+    else query.user = req.session.currentUser;
+    if(categoryArray[0] !== undefined) query.category = {$in: categoryArray}
     tipModel
-        .find({ $and: [{ country }, { category: { $in: categoryArray } }] })
+        .find(query)
         .populate("country")
         .populate("user")
         .then(tips => {

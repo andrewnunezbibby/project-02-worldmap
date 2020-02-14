@@ -135,7 +135,7 @@ setDeleteListeners();
 function handleDeleteTips(evt) {
 
     const tipId = evt.target.getAttribute('data-tip-id')
-    axios.delete(`/user/${tipId}/remove-tip`, { withCredentials: true }).then(apiRes => {
+    axios.delete(`/user/${tipId}/remove-tip`, { withCredentials: true }).then(apiRes => { // withCredentials means that we manage the cookie Parser
         document.getElementById(tipId).remove();
     }).catch(err => {
         console.log(err)
