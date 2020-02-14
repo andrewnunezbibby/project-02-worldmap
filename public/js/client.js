@@ -43,12 +43,12 @@ function toggleVisitedButton() {
         visitedButton.classList.remove("item-visited")
     }
     if (userVisitedCountries.indexOf(countryId) > -1) {
-        visitedButton.classList.toggle("item-visited")
+        visitedButton.classList.add("item-visited")
     }
 }
 
 function handleVisited(evt) {
-    const countryId = evt.target.getAttribute('data-country-id')
+    const countryId = evt.target.getAttribute('data-visited-id')
 
     if (userVisitedCountries.indexOf(countryId) === -1) {
         console.log("here adding")
@@ -61,7 +61,7 @@ function handleVisited(evt) {
         console.log(userVisitedCountries);
     }
     if (userVisitedCountries.indexOf(countryId) > -1) {
-        console.log("here adding")
+        console.log("here removing")
         axios.patch(`/country/${countryId}/visited-remove`).then(
             response => {
                 visitedButton.classList.toggle("item-visited")
