@@ -23,7 +23,7 @@
 .guide-text{
     width: 40%;
     line-height: 1.8em;
-    text-align: center;
+    text-align: justify;
 }
 
 @media screen and (max-width: 1000px){
