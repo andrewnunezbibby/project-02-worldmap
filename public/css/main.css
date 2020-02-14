@@ -89,3 +89,11 @@ button:focus {
 button i{
     pointer-events: none;
 }
+
+.item-visited{
+    background-color: rgb(39, 185, 117) !important;
+}
+
+.item-wishlist{
+    background-color: rgb(117, 219, 171) !important;
+}
